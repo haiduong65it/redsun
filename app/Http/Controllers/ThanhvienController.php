@@ -1,25 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\NhanVien;
+use App\ThanhVien;
 use Illuminate\Http\Request;
 
-class NhanvienController extends Controller
+class ThanhvienController extends Controller
 {
     //
     public function danhsach(){
-    	$nhanvien = NhanVien::all();
-    	return view('backend.admin.nhanvien.List', ['nhanvien'=>$nhanvien]);
+    	$thanhvien = ThanhVien::all();
+    	return view('backend.admin.thanhvien.List', ['thanhvien'=>$thanhvien]);
     }
 
     public function get_them(){
-    	return view('backend.admin.nhanvien.Create');
+    	return view('backend.admin.thanhvien.Create');
     }
 
     public function post_them(Request $request){
     	$this->validate($request,
         [
-          'InputID' => 'unique:NhanVien,tendangnhap|required|min:5|max:50',
+          'InputID' => 'unique:ThanhVien,tendangnhap|required|min:5|max:50',
           'InputPassword' => 'required|min:5',
           'InputName' => 'required|min:5',
           'InputTel' => 'required|digits_between:10,10',
@@ -43,46 +43,46 @@ class NhanvienController extends Controller
         ]); 	
 
     	$avatar = 'default.png';
-    	$nhanvien = new NhanVien;
-  		$nhanvien->hoten = $request->InputName;
-  		$nhanvien->ngaysinh = $request->InputBirth;
-  		$nhanvien->gioitinh = $request->InputSex;
-  		$nhanvien->sdt = $request->InputTel;
-  		$nhanvien->diachi = $request->InputAddress;
-  		$nhanvien->tendangnhap = $request->InputID;
-  		$nhanvien->matkhau = bcrypt($request->InputPassword);
+    	$thanhvien = new ThanhVien;
+  		$thanhvien->hoten = $request->InputName;
+  		$thanhvien->ngaysinh = $request->InputBirth;
+  		$thanhvien->gioitinh = $request->InputSex;
+  		$thanhvien->sdt = $request->InputTel;
+  		$thanhvien->diachi = $request->InputAddress;
+  		$thanhvien->tendangnhap = $request->InputID;
+  		$thanhvien->matkhau = bcrypt($request->InputPassword);
   		if ($request->hasfile('InputAvatar')){
         $file = $request->file('InputAvatar');
   			$name = $file->getClientOriginalName();
   			$Hinh = str_random(4)."_".$name;
-  			while(file_exists("upload/img/avatar/nhanvien/".$Hinh)){
+  			while(file_exists("upload/img/avatar/thanhvien/".$Hinh)){
   			  $Hinh = str_random(4)."_".$name;
   			}
 
-  			$file->move('upload/img/avatar/nhanvien', $Hinh);
+  			$file->move('upload/img/avatar/thanhvien', $Hinh);
   			$avatar = $Hinh;
   			}
 
-      $nhanvien->avatar = $avatar;
+      $thanhvien->avatar = $avatar;
 
-  		$nhanvien->save();
+  		$thanhvien->save();
 
-      return redirect('admin/nhanvien/them')->with('thongbao','Thêm nhân viên thành công');
+      return redirect('admin/thanhvien/them')->with('thongbao','Thêm nhân viên thành công');
     }
 
     public function get_sua($id)
     {
-      $nhanvien = NhanVien::find($id);
-      return view('backend.admin.nhanvien.Update', ['nhanvien'=>$nhanvien]);
+      $thanhvien = ThanhVien::find($id);
+      return view('backend.admin.thanhvien.Update', ['thanhvien'=>$thanhvien]);
     }
 
     public function post_sua(Request $request,$id)
     {
-      $nhanvien = NhanVien::find($id);
+      $thanhvien = ThanhVien::find($id);
       if($request->changeID == "on"){
         $this->validate($request,
         [
-          'InputID' => 'unique:NhanVien,tendangnhap|required|min:5|max:50',
+          'InputID' => 'unique:ThanhVien,tendangnhap|required|min:5|max:50',
         ],
         [
           'InputID.unique' => "tên đăng nhập này đã tồn tại",
@@ -90,7 +90,7 @@ class NhanvienController extends Controller
           'InputID.min' => "tên đăng nhập phải có ít nhất 5 kí tự",
           'InputID.max' => "tên đăng nhập chứa tối đa 50 kí tự",
         ]);
-        $nhanvien->tendangnhap = $request->InputID;
+        $thanhvien->tendangnhap = $request->InputID;
       }
       if($request->changePass == "on"){
         $this->validate($request,
@@ -104,21 +104,21 @@ class NhanvienController extends Controller
           'PasswordAgain.required' => "Chưa nhập lại mật khẩu",
           'PasswordAgain.same' => "Mật khẩu nhập lại chưa khớp",
         ]);
-        $nhanvien->password = bcrypt($request->InputPassword);
+        $thanhvien->password = bcrypt($request->InputPassword);
       }
 
-      $nhanvien->save();
+      $thanhvien->save();
 
-      return redirect('admin/nhanvien/danhsach')->with('thongbao',"Sửa thành công nhân viên ".$nhanvien->hoten);
+      return redirect('admin/thanhvien/danhsach')->with('thongbao',"Sửa thành công nhân viên ".$thanhvien->hoten);
       
     }
 
     public function xoa($id)
     {
-      $nhanvien = NhanVien::find($id);
-      $hoten = $nhanvien->hoten;
-      $nhanvien->delete();
+      $thanhvien = ThanhVien::find($id);
+      $hoten = $thanhvien->hoten;
+      $thanhvien->delete();
 
-      return redirect('admin/nhanvien/danhsach')->with('thongbao',"Đã xóa thành công nhân viên ".$hoten);
+      return redirect('admin/thanhvien/danhsach')->with('thongbao',"Đã xóa thành công nhân viên ".$hoten);
     }
 }

@@ -20,7 +20,6 @@ class CreateNhanvienTable extends Migration
             $table->string('gioitinh');
             $table->string('sdt');
             $table->string('diachi');
-            $table->string('chucvu');
             $table->string('tendangnhap');
             $table->string('matkhau');
             $table->string('avatar')->nullable();

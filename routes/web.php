@@ -29,6 +29,24 @@ Route::group(['prefix'=>'admin'], function(){
 
 		Route::get('them', 'NhanvienController@get_them');
 		Route::post('them', 'NhanvienController@post_them');
+
+		Route::get('sua/{id}', 'NhanvienController@get_sua');
+		Route::post('sua/{id}', 'NhanvienController@post_sua');
+
+		Route::get('xoa/{id}', 'NhanvienController@xoa');
+	});
+
+	Route::group(['prefix'=>'thanhvien'], function(){
+
+		Route::get('danhsach', 'ThanhvienController@danhsach');
+
+		Route::get('them', 'ThanhvienController@get_them');
+		Route::post('them', 'ThanhvienController@post_them');
+
+		Route::get('sua/{id}', 'ThanhvienController@get_sua');
+		Route::post('sua/{id}', 'ThanhvienController@post_sua');
+
+		Route::get('xoa/{id}', 'ThanhvienController@xoa');
 	});
 });
 

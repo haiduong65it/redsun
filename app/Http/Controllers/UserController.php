@@ -1,19 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\NhanVien;
+use App\User;
 use Illuminate\Http\Request;
 
-class NhanvienController extends Controller
+class UserController extends Controller
 {
     //
-    public function danhsach(){
-    	$nhanvien = NhanVien::all();
-    	return view('backend.admin.nhanvien.List', ['nhanvien'=>$nhanvien]);
-    }
 
     public function get_them(){
-    	return view('backend.admin.nhanvien.Create');
+    	return view('backend.admin.admin.Create');
     }
 
     public function post_them(Request $request){

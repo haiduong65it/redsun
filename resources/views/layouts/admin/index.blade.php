@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="admin/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="admin/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="admin/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -28,8 +30,6 @@
   <link rel="stylesheet" href="admin/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
-  <link rel="stylesheet" type="text/css" href="admin/DataTables/datatables.min.css">
 
   @yield('css')
 
@@ -60,11 +60,12 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="admin/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script src="admin/DataTables/datatables.min.js"></script>
+
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
 <script src="admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <script src="admin/bower_components/raphael/raphael.min.js"></script>
 <script src="admin/bower_components/morris.js/morris.min.js"></script>
 <script src="admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
@@ -78,9 +79,10 @@
 <script src="admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="admin/bower_components/fastclick/lib/fastclick.js"></script>
 <script src="admin/dist/js/adminlte.min.js"></script>
+<script src="admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script src="admin/dist/js/pages/dashboard.js"></script>
 <script src="admin/dist/js/demo.js"></script>
-
 
 @yield('script')
 </body>

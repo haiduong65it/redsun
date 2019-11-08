@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Danh sách nhân viên')
+@section('title', 'Danh sách thành viên')
 
 @section('content')
 	
@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Nhân viên
+        Thành viên
         <small>Danh sách</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Nhân viên</a></li>
+        <li><a href="#">Thành viên</a></li>
         <li class="active">Danh sách</li>
       </ol>
     </section>
@@ -30,11 +30,11 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Danh sách nhân viên</h3>
+              <h3 class="box-title">Danh sách thành viên</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="dsnv" class="table table-bordered table-hover">
+              <table id="table" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>ID</th>
@@ -43,6 +43,7 @@
                   <th>Giới Tính</th>
                   <th>Số Điện Thoại</th>
                   <th>Địa chỉ</th>
+                  <th>Email</th>
                   <th>Avatar</th>
                   <th>Tên Đăng Nhập</th>
                   <th>Sửa</th>
@@ -50,18 +51,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($nhanvien as $nv)
+                @foreach($thanhvien as $tv)
                   <tr>
-                    <td>{{$nv->id}}</td>
-                    <td>{{$nv->hoten}}</td>
-                    <td>{{$nv->ngaysinh}}</td>
-                    <td>@if ($nv->gioitinh == 'Male') {{'Nam'}} @else {{'Nữ'}} @endif</td>
-                    <td>{{$nv->sdt}}</td>
-                    <td>{{$nv->diachi}}</td>
-                    <td><img src="upload/img/avatar/nhanvien/{{$nv->avatar}}" width="100px"></td>
-                    <td>{{$nv->tendangnhap}}</td>
-                    <td><a href="admin/nhanvien/sua/{{$nv->id}}" class="btn btn-success">Sửa</a></td>
-                    <td><a href="admin/nhanvien/xoa/{{$nv->id}}" class="btn btn-danger">Xóa</a></td>
+                    <td>{{$tv->id}}</td>
+                    <td>{{$tv->hoten}}</td>
+                    <td>{{$tv->ngaysinh}}</td>
+                    <td>{{$tv->gioitinh}}</td>
+                    <td>{{$tv->sdt}}</td>
+                    <td>{{$tv->diachi}}</td>
+                    <td>{{$tv->email}}</td>
+                    <td><img src="upload/img/avatar/thanhvien/{{$tv->avatar}}" width="100px"></td>
+                    <td>{{$tv->tendangnhap}}</td>
+                    <td><a href="admin/thanhvien/sua/{{$tv->id}}" class="btn btn-success">Sửa</a></td>
+                    <td><a href="admin/thanhvien/xoa/{{$tv->id}}" class="btn btn-danger">Xóa</a></td>
                   </tr>
                 @endforeach
                 </tbody>
@@ -85,7 +87,7 @@
 @section('script')
 <script type="text/javascript">
   $(document).ready( function () {
-    $('#dsnv').DataTable();
+    $('#table').DataTable();
 } );
 </script>
 @endsection

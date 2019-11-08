@@ -19,12 +19,12 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content" style="margin: 0 auto; width: 60%;">
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3>Chỉnh sửa thông tin đăng nhập của nhân viên</h3>
+              <h3>Chỉnh sửa thông tin nhân viên</h3>
             </div>
             @if ($errors->any())
               <div class="alert alert-danger">
@@ -41,6 +41,34 @@
             @endif
             <form class="forms-sample" action="admin/nhanvien/sua/{{$nhanvien->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
+              <div class="form-group">
+                <label for="InputName">Họ Tên</label>
+                <input type="text" class="form-control" name="InputName" placeholder="Nhập Họ và Tên" value="{{$nhanvien->hoten}}" disabled="">
+              </div>
+              <div class="form-group">
+                <label for="InputBirth">Ngày sinh</label>
+                <input type="date" class="form-control" name="InputBirth" placeholder="Chọn ngày sinh" value="{{$nhanvien->ngaysinh}}" disabled="">
+              </div>
+              <div class="form-group">
+                <label for="InputSex">Giới tính</label><br>
+                <select name="InputSex" disabled="">
+                  <option value="Male" @if ($nhanvien->gioitinh == 'Male') {{"selected='selected'"}} @endif>Nam</option>
+                  <option value="Female" @if ($nhanvien->gioitinh == 'Female') {{"selected='selected'"}} @endif>Nữ</option>
+                  <option value="other" @if ($nhanvien->gioitinh == 'other') {{"selected='selected'"}} @endif>Khác</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="InputTel">Số điện thoại</label>
+                <input type="text" class="form-control" name="InputTel" placeholder="Nhập số điện thoại" value="{{$nhanvien->sdt}}" disabled="">
+              </div>
+              <div class="form-group">
+                <label for="InputAddress">Địa chỉ</label>
+                <input type="text" class="form-control" name="InputAddress" placeholder="Nhập địa chỉ" value="{{$nhanvien->diachi}}" disabled="">
+              </div>
+              <div class="form-group">
+                <label for="InputAvatar">Avatar</label>
+                <img src="upload/img/avatar/nhanvien/{{$nhanvien->avatar}}" height="100px">
+              </div>
               <div class="form-group">
                 <input type="checkbox" name="changeID" id="changeID">
                 <label for="InputID">Đổi Tên đăng nhập</label>
@@ -62,49 +90,8 @@
           <!-- /.box -->
         </div>
         <!-- /.col -->
-        <div class="col-xs-6">
-          <div class="box">
-            <div class="box-header">
-              <h3>Thông tin nhân viên</h3>
-            </div>
-            <div class="box-body">
-              <form class="forms-sample">
-                <div class="form-group">
-                  <label for="InputName">Họ Tên</label>
-                  <input type="text" class="form-control" name="InputName" placeholder="Nhập Họ và Tên" value="{{$nhanvien->hoten}}" disabled="">
-                </div>
-                <div class="form-group">
-                  <label for="InputBirth">Ngày sinh</label>
-                  <input type="date" class="form-control" name="InputBirth" placeholder="Chọn ngày sinh" value="{{$nhanvien->ngaysinh}}" disabled="">
-                </div>
-                <div class="form-group">
-                  <label for="InputSex">Giới tính</label><br>
-                  <select name="InputSex" disabled="">
-                    <option value="Male" @if ($nhanvien->gioitinh == 'Male') {{"selected='selected'"}} @endif>Nam</option>
-                    <option value="Female" @if ($nhanvien->gioitinh == 'Female') {{"selected='selected'"}} @endif>Nữ</option>
-                    <option value="other" @if ($nhanvien->gioitinh == 'other') {{"selected='selected'"}} @endif>Khác</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="InputTel">Số điện thoại</label>
-                  <input type="text" class="form-control" name="InputTel" placeholder="Nhập số điện thoại" value="{{$nhanvien->sdt}}" disabled="">
-                </div>
-                <div class="form-group">
-                  <label for="InputAddress">Địa chỉ</label>
-                  <input type="text" class="form-control" name="InputAddress" placeholder="Nhập địa chỉ" value="{{$nhanvien->diachi}}" disabled="">
-                </div>
-                <div class="form-group">
-                  <label for="InputAvatar">Avatar</label>
-                  <img src="upload/img/avatar/nhanvien/{{$nhanvien->avatar}}" height="100px">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
       </div>
       <!-- /.row -->
-        
-            </div>
     </section>
     <!-- /.content -->
   </div>
