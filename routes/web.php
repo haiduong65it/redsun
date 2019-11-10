@@ -19,10 +19,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('/admin/dashboard', 'HomeController@dashboard')->name('dashboard');
 
+Route::get('/admin/register', 'UserController@get_Register');
+Route::post('/admin/register', 'UserController@post_Register');
+Route::get('/admin/login', 'UserController@get_Login');
+Route::post('/admin/login', 'UserController@post_Login');
+Route::get('/admin/edit/{id}', 'UserController@get_Edit');
+Route::post('/admin/edit/{id}', 'UserController@post_Edit');
+Route::get('/admin/logout', 'UserController@Logout');
 
-Route::group(['prefix'=>'admin'], function(){
+Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 	Route::group(['prefix'=>'nhanvien'], function(){
 
 		Route::get('danhsach', 'NhanvienController@danhsach');

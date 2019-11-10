@@ -213,18 +213,19 @@
             </ul>
           </li>
           <!-- User Account: style can be found in dropdown.less -->
+          @if (Auth::check())
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+            <img src="upload/img/avatar/admin/{{Auth::user()->avatar}}" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{Auth::user()->name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="upload/img/avatar/admin/{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                    {{Auth::user()->name}} - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -246,14 +247,18 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <a href="admin/edit/{{Auth::user()->id}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="admin/logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
           </li>
+          @else
+          <li><a href="admin/login">Đăng nhập</a></li>
+          <li><a href="admin/register">Đăng kí</a></li>
+          @endif
           <!-- Control Sidebar Toggle Button -->
           <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
@@ -268,13 +273,15 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
-        <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        @if (Auth::check())
+        <div class="pull-left image" style="height:45px"> 
+          <img src="upload/img/avatar/admin/{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>{{Auth::user()->name}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
+        @endif
       </div>
       <!-- search form -->
       <form action="#" method="get" class="sidebar-form">
@@ -291,21 +298,21 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
-          <a href="dashboard">
+          <a href="admin/dashboard">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
-            <span>Sản Phẩm</span>
+            <span>Nhân viên</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">2</span>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+            <li><a href="admin/nhanvien/them"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+            <li><a href="admin/nhanvien/danhsach"><i class="fa fa-circle-o"></i> Danh sách</a></li>
           </ul>
         </li>
         <li>

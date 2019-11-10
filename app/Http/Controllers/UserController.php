@@ -3,118 +3,178 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     //
 
-    public function get_them(){
-    	return view('backend.admin.admin.Create');
+    public function get_Register(){
+    	return view('backend.admin.Register');
     }
 
-    public function post_them(Request $request){
-    	$this->validate($request,
-        [
-          'InputID' => 'unique:NhanVien,tendangnhap|required|min:5|max:50',
-          'InputPassword' => 'required|min:5',
-          'InputName' => 'required|min:5',
-          'InputTel' => 'required|digits_between:10,10',
-          'InputBirth' => 'required|before:today',
-          'InputAddress' => 'required',
-          'InputAvatar' => 'required',
+    public function post_Register(Request $request){
+    	$validator = Validator::make($request->all(), [
+          'Email' => 'unique:users,email|required|min:5|max:50',
+          'Password' => 'required|min:5',
+          'Re-Password' => 'required|same:Password',
+          'Name' => 'required|min:5',
         ],
         [
-          'InputID.unique' => "tên đăng nhập này đã tồn tại",
-          'InputID.required' => "Chưa nhập tên đăng nhập",
-          'InputID.min' => "tên đăng nhập phải có ít nhất 5 kí tự",
-          'InputID.max' => "tên đăng nhập chứa tối đa 50 kí tự",
-          'InputPassword.required' => "Chưa nhập mật khẩu",
-          'InputPassword.min' => "Mật khẩu phải có ít nhất 5 kí tự",
-          'InputName.required' => "Chưa nhập tên nhân viên",
-          'InputName.min' => "Tên nhân viên phải có ít nhất 5 kí tự",
-          'InputTel.required' => "Chưa nhập số điện thoại",
-          'InputTel.digits_between' => "Số điện thoại phải có đủ 10 số",
-          'InputBirth.required' => "Chưa chọn ngày sinh",
-          'InputBirth.before' => "Ngày sinh phải trước ngày hôm nay",
+          'Email.unique' => "Email đăng nhập này đã tồn tại",
+          'Email.required' => "Chưa nhập email đăng nhập",
+          'Email.min' => "Email đăng nhập phải có ít nhất 5 kí tự",
+          'Email.max' => "Email đăng nhập chứa tối đa 50 kí tự",
+          'Password.required' => "Chưa nhập mật khẩu",
+          'Password.min' => "Mật khẩu phải có ít nhất 5 kí tự",
+          'Name.required' => "Chưa nhập họ tên",
+          'Name.min' => "Họ tên phải có ít nhất 5 kí tự",
+          'Re-Password.required' => "Chưa nhập lại mật khẩu",
+          'Re-Password.same' => "Mật khẩu nhập lại chưa khớp",
         ]); 	
-
+      if ($validator->fails()) 
+      {
+        return redirect('admin/register')
+                    ->withErrors($validator)
+                    ->withInput();
+      }
     	$avatar = 'default.png';
-    	$nhanvien = new NhanVien;
-  		$nhanvien->hoten = $request->InputName;
-  		$nhanvien->ngaysinh = $request->InputBirth;
-  		$nhanvien->gioitinh = $request->InputSex;
-  		$nhanvien->sdt = $request->InputTel;
-  		$nhanvien->diachi = $request->InputAddress;
-  		$nhanvien->tendangnhap = $request->InputID;
-  		$nhanvien->matkhau = bcrypt($request->InputPassword);
-  		if ($request->hasfile('InputAvatar')){
-        $file = $request->file('InputAvatar');
+    	$User = new User;
+  		$User->name = $request->Name;
+  		$User->email = $request->Email;
+  		$User->password = bcrypt($request->Password);
+  		if ($request->hasfile('Avatar')){
+        $file = $request->file('Avatar');
   			$name = $file->getClientOriginalName();
   			$Hinh = str_random(4)."_".$name;
-  			while(file_exists("upload/img/avatar/nhanvien/".$Hinh)){
+  			while(file_exists("upload/img/avatar/admin/".$Hinh)){
   			  $Hinh = str_random(4)."_".$name;
   			}
 
-  			$file->move('upload/img/avatar/nhanvien', $Hinh);
+  			$file->move('upload/img/avatar/admin', $Hinh);
   			$avatar = $Hinh;
   			}
 
-      $nhanvien->avatar = $avatar;
+      $User->avatar = $avatar;
 
-  		$nhanvien->save();
-
-      return redirect('admin/nhanvien/them')->with('thongbao','Thêm nhân viên thành công');
+  		$User->save();
+      
+      return redirect('admin/dashboard');
     }
 
-    public function get_sua($id)
+    public function get_Login()
     {
-      $nhanvien = NhanVien::find($id);
-      return view('backend.admin.nhanvien.Update', ['nhanvien'=>$nhanvien]);
+      return view('backend.admin.Login');
     }
 
-    public function post_sua(Request $request,$id)
+    public function post_Login(Request $request)
     {
-      $nhanvien = NhanVien::find($id);
-      if($request->changeID == "on"){
-        $this->validate($request,
-        [
-          'InputID' => 'unique:NhanVien,tendangnhap|required|min:5|max:50',
+      # code...
+      $validator = Validator::make($request->all(), [
+        'Email' => "Required",
+        'Password' => 'Required|min:5'
+      ],
+      [
+        'Email.required' => 'Chưa nhập Email',
+        'Password.required' => 'Chưa nhập mật khẩu',
+        'Password.min' => 'Mật khẩu chứa ít nhất 5 kí tự',
+      ]);
+      if (!Auth::attempt(['email' => $request->Email, 'password' => $request->Password])) 
+      {
+        $validator->after(function ($validator) {
+          $validator->errors()->add('thongbao', 'Email hoặc mật khẩu không đúng');
+        });
+      }
+      if ($validator->fails()) 
+        {
+          return back()->withErrors($validator)->withInput();
+        }
+      if (Auth::attempt(['email' => $request->Email, 'password' => $request->Password])) {
+          return redirect('admin/dashboard');
+      } else {
+        return back()->withInput()->with('thongbao','Email hoặc mật khẩu không đúng');
+      }
+    }
+
+    public function get_Edit($id)
+    {
+      $user = User::find($id);
+      return view('backend.admin.Update', ['admin'=>$user]);
+    }
+
+    public function post_Edit(Request $request,$id)
+    {
+      $user = User::find($id);
+      $validator_name = Validator::make($request->all(), [
+        'Name' => 'required|min:5',
         ],
         [
-          'InputID.unique' => "tên đăng nhập này đã tồn tại",
-          'InputID.required' => "Chưa nhập tên đăng nhập",
-          'InputID.min' => "tên đăng nhập phải có ít nhất 5 kí tự",
-          'InputID.max' => "tên đăng nhập chứa tối đa 50 kí tự",
+          'Name.required' => "Chưa nhập họ tên",
+          'Name.min' => "Họ tên phải có ít nhất 5 kí tự",
         ]);
-        $nhanvien->tendangnhap = $request->InputID;
+        if ($validator_name->fails()) 
+        {
+          return back()->withErrors($validator_name)->withInput();
+        }
+      $user->name = $request->Name;
+      if($request->changeEmail == "on"){
+        $validator_email = Validator::make($request->all(), [
+          'Email' => 'unique:users,email|required|min:5|max:50',
+        ],
+        [
+          'Email.unique' => "tên đăng nhập này đã tồn tại",
+          'Email.required' => "Chưa nhập tên đăng nhập",
+          'Email.min' => "tên đăng nhập phải có ít nhất 5 kí tự",
+          'Email.max' => "tên đăng nhập chứa tối đa 50 kí tự",
+        ]);
+        if ($validator_email->fails()) 
+        {
+          return back()->withErrors($validator_email)->withInput();
+        }
+        $user->email = $request->Email;
       }
       if($request->changePass == "on"){
-        $this->validate($request,
-        [
-          'InputPassword' => 'required|min:5',
-          'PasswordAgain' => 'required|same:InputPassword'
+        $validator_pass = Validator::make($request->all(), [
+          'Password' => 'required|min:5',
+          'Re-Password' => 'required|same:Password'
         ],
         [
-          'InputPassword.required' => "Chưa nhập mật khẩu",
-          'InputPassword.min' => "Mật khẩu phải có ít nhất 5 kí tự",
-          'PasswordAgain.required' => "Chưa nhập lại mật khẩu",
-          'PasswordAgain.same' => "Mật khẩu nhập lại chưa khớp",
+          'Password.required' => "Chưa nhập mật khẩu",
+          'Password.min' => "Mật khẩu phải có ít nhất 5 kí tự",
+          'Re-Password.required' => "Chưa nhập lại mật khẩu",
+          'Re-Password.same' => "Mật khẩu nhập lại chưa khớp",
         ]);
-        $nhanvien->password = bcrypt($request->InputPassword);
+        if ($validator_pass->fails()) 
+        {
+          return back()->withErrors($validator_pass)->withInput();
+        }
+        $user->password = bcrypt($request->InputPassword);
       }
+      $avatar = $user->avatar;
+      if ($request->hasfile('Avatar')){
+        $file = $request->file('Avatar');
+  			$name = $file->getClientOriginalName();
+  			$Hinh = str_random(4)."_".$name;
+  			while(file_exists("upload/img/avatar/admin/".$Hinh)){
+  			  $Hinh = str_random(4)."_".$name;
+  			}
 
-      $nhanvien->save();
+  			$file->move('upload/img/avatar/admin', $Hinh);
+  			$avatar = $Hinh;
+  			}
 
-      return redirect('admin/nhanvien/danhsach')->with('thongbao',"Sửa thành công nhân viên ".$nhanvien->hoten);
+      $user->avatar = $avatar;
+
+      $user->save();
+
+      return redirect('admin/dashboard');
       
     }
 
-    public function xoa($id)
+    public function Logout()
     {
-      $nhanvien = NhanVien::find($id);
-      $hoten = $nhanvien->hoten;
-      $nhanvien->delete();
-
-      return redirect('admin/nhanvien/danhsach')->with('thongbao',"Đã xóa thành công nhân viên ".$hoten);
+      Auth::logout();
+      return redirect('admin/login');
     }
 }
