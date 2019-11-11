@@ -54,7 +54,7 @@
                   <tr>
                     <td>{{$nv->id}}</td>
                     <td>{{$nv->hoten}}</td>
-                    <td>{{$nv->ngaysinh}}</td>
+                    <td>{{date('d/m/Y', strtotime($nv->ngaysinh))}}</td>
                     <td>@if ($nv->gioitinh == 'Male') {{'Nam'}} @else {{'Nữ'}} @endif</td>
                     <td>{{$nv->sdt}}</td>
                     <td>{{$nv->diachi}}</td>

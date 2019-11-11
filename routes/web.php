@@ -11,15 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/admin/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('/admin/dashboard', 'HomeController@dashboard');
 
 Route::get('/admin/register', 'UserController@get_Register');
 Route::post('/admin/register', 'UserController@post_Register');
@@ -56,4 +50,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 		Route::get('xoa/{id}', 'ThanhvienController@xoa');
 	});
 });
+
+Route::get('/', 'HomeController@home');
 

@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Cập nhật nhân viên')
+@section('title', 'Cập nhật thành viên')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -8,12 +8,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Nhân viên
+        Thành viên
         <small>Chỉnh sửa</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Nhân viên</a></li>
+        <li><a href="#">Thành viên</a></li>
         <li class="active">Sửa</li>
       </ol>
     </section>
@@ -24,7 +24,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3>Chỉnh sửa thông tin nhân viên</h3>
+              <h3>Chỉnh sửa thông tin thành viên</h3>
             </div>
             @if ($errors->any())
               <div class="alert alert-danger">
@@ -39,40 +39,40 @@
                 {{session('thongbao')}}
               </div>
             @endif
-            <form class="forms-sample" action="admin/nhanvien/sua/{{$nhanvien->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
+            <form class="forms-sample" action="admin/thanhvien/sua/{{$thanhvien->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
               <div class="form-group">
                 <label for="InputName">Họ Tên</label>
-                <input type="text" class="form-control" name="InputName" placeholder="Nhập Họ và Tên" value="{{$nhanvien->hoten}}" disabled="">
+                <input type="text" class="form-control" name="InputName" placeholder="Nhập Họ và Tên" value="{{$thanhvien->hoten}}" disabled="">
               </div>
               <div class="form-group">
                 <label for="InputBirth">Ngày sinh</label>
-                <input type="date" class="form-control" name="InputBirth" placeholder="Chọn ngày sinh" value="{{$nhanvien->ngaysinh}}" disabled="">
+                <input type="date" class="form-control" name="InputBirth" placeholder="Chọn ngày sinh" value="{{$thanhvien->ngaysinh}}" disabled="">
               </div>
               <div class="form-group">
                 <label for="InputSex">Giới tính</label><br>
                 <select name="InputSex" disabled="">
-                  <option value="Male" @if ($nhanvien->gioitinh == 'Male') {{"selected='selected'"}} @endif>Nam</option>
-                  <option value="Female" @if ($nhanvien->gioitinh == 'Female') {{"selected='selected'"}} @endif>Nữ</option>
-                  <option value="other" @if ($nhanvien->gioitinh == 'other') {{"selected='selected'"}} @endif>Khác</option>
+                  <option value="Male" @if ($thanhvien->gioitinh == 'Male') {{"selected='selected'"}} @endif>Nam</option>
+                  <option value="Female" @if ($thanhvien->gioitinh == 'Female') {{"selected='selected'"}} @endif>Nữ</option>
+                  <option value="other" @if ($thanhvien->gioitinh == 'other') {{"selected='selected'"}} @endif>Khác</option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="InputTel">Số điện thoại</label>
-                <input type="text" class="form-control" name="InputTel" placeholder="Nhập số điện thoại" value="{{$nhanvien->sdt}}" disabled="">
+                <input type="text" class="form-control" name="InputTel" placeholder="Nhập số điện thoại" value="{{$thanhvien->sdt}}" disabled="">
               </div>
               <div class="form-group">
                 <label for="InputAddress">Địa chỉ</label>
-                <input type="text" class="form-control" name="InputAddress" placeholder="Nhập địa chỉ" value="{{$nhanvien->diachi}}" disabled="">
+                <input type="text" class="form-control" name="InputAddress" placeholder="Nhập địa chỉ" value="{{$thanhvien->diachi}}" disabled="">
               </div>
               <div class="form-group">
                 <label for="InputAvatar">Avatar</label>
-                <img src="upload/img/avatar/nhanvien/{{$nhanvien->avatar}}" height="100px">
+                <img src="upload/img/avatar/thanhvien/{{$thanhvien->avatar}}" height="100px">
               </div>
               <div class="form-group">
                 <input type="checkbox" name="changeID" id="changeID">
                 <label for="InputID">Đổi Tên đăng nhập</label>
-                <input type="text" class="form-control id" name="InputID" placeholder="Nhập ID nhân viên" value="{{$nhanvien->tendangnhap}}" disabled="">
+                <input type="text" class="form-control id" name="InputID" placeholder="Nhập ID nhân viên" value="{{$thanhvien->tendangnhap}}" disabled="">
               </div>
               <div class="form-group">
                 <input type="checkbox" name="changePass" id="changePass">

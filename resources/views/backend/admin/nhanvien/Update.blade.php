@@ -48,11 +48,11 @@
               </div>
               <div class="form-group">
                 <input type="checkbox" name="changePass" id="changePass">
-                <label for="InputPassword">Đổi Mật Khẩu</label>
+                <label for="InputPassword">Đổi mật khẩu</label>
                 <input type="password" class="form-control password" name="InputPassword" placeholder="Nhập Mật khẩu" disabled="">
               </div>
               <div class="form-group">
-                <label for="PasswordAgain">Đổi Mật Khẩu</label>
+                <label for="PasswordAgain">Nhập lại mật khẩu</label>
                 <input type="password" class="form-control password" name="PasswordAgain" placeholder="Nhập lại Mật khẩu" disabled="">
               </div>
               <button type="submit" class="btn btn-success mr-2">Thay đổi</button>

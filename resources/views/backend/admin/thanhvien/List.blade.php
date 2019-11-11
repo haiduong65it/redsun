@@ -55,12 +55,12 @@
                   <tr>
                     <td>{{$tv->id}}</td>
                     <td>{{$tv->hoten}}</td>
-                    <td>{{$tv->ngaysinh}}</td>
-                    <td>{{$tv->gioitinh}}</td>
+                    <td>{{date('d/m/Y', strtotime($tv->ngaysinh))}}</td>
+                    <td>@if ($tv->gioitinh == 'Male') {{'Nam'}} @else {{'Nữ'}} @endif</td>
                     <td>{{$tv->sdt}}</td>
                     <td>{{$tv->diachi}}</td>
                     <td>{{$tv->email}}</td>
-                    <td><img src="upload/img/avatar/thanhvien/{{$tv->avatar}}" width="100px"></td>
+                    <td><img src="upload/img/avatar/thanhvien/{{$tv->avatar}}" width="50px"></td>
                     <td>{{$tv->tendangnhap}}</td>
                     <td><a href="admin/thanhvien/sua/{{$tv->id}}" class="btn btn-success">Sửa</a></td>
                     <td><a href="admin/thanhvien/xoa/{{$tv->id}}" class="btn btn-danger">Xóa</a></td>

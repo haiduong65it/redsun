@@ -82,7 +82,7 @@ class ThanhvienController extends Controller
       if($request->changeID == "on"){
         $this->validate($request,
         [
-          'InputID' => 'unique:ThanhVien,tendangnhap|required|min:5|max:50',
+          'InputID' => 'unique:thanhvien,tendangnhap|required|min:5|max:50',
         ],
         [
           'InputID.unique' => "tên đăng nhập này đã tồn tại",

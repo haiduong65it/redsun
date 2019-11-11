@@ -60,7 +60,7 @@ class UserController extends Controller
 
   		$User->save();
       
-      return redirect('admin/dashboard');
+      return redirect('admin/login');
     }
 
     public function get_Login()
