@@ -4,6 +4,7 @@
 <head>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<base href="{{asset('')}}">
 	<!-- Favicon-->
 	<link rel="shortcut icon" href="img/fav.png">
 	<!-- Author Meta -->
@@ -15,7 +16,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>@yield('title') - Karma Shop</title>
+	<title>@yield('title') - Redsun Shop</title>
 	<!--
 		CSS
 		============================================= -->

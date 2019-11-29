@@ -1,10 +1,40 @@
 <!-- Start Header Area -->
 <header class="header_area sticky-header">
+    
     <div class="main_menu">
+        <div class="navbar navbar-expand-lg navbar-light main_box">
+            <div class="container">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav ml-auto navbar-right">
+                        <li class="nav-item dropdown submenu">
+                            @if (Auth::guard('thanhvien')->check())
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                aria-expanded="false">Hello, {{Auth::guard('thanhvien')->user()->hoten}} <span class="fa fa-fw fa-user"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="edit/{{Auth::guard('thanhvien')->user()->id}}">Account</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
+                                </ul>
+                            @else
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                aria-expanded="false">User <span class="fa fa-fw fa-user"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="login">Đăng nhập</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="register">Đăng kí</a></li>
+                                </ul>
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">Giỏ hàng <span class="fa fa-fw fa-shopping-cart"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <nav class="navbar navbar-expand-lg navbar-light main_box">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="index.html"><img src="frontend/img/logo.png" alt=""></a>
+                <a class="navbar-brand logo_h" href="{{route('home')}}"><img src="frontend/img/banner.jpg" alt="" height="50px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
@@ -46,7 +76,6 @@
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
                         <li class="nav-item">
                             <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
                         </li>

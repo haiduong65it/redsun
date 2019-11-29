@@ -44,7 +44,15 @@ return [
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
-            'hash' => false,
+        ],
+        'thanhvien' => [
+            'driver' => 'session',
+            'provider' => 'thanh_viens',
+        ],
+
+        'thanhvien-api' => [
+            'driver' => 'token',
+            'provider' => 'thanh_viens',
         ],
     ],
 
@@ -75,6 +83,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'thanh_viens' => [
+            'driver' => 'eloquent',
+            'model' => App\ThanhVien::class,
+        ],
     ],
 
     /*
@@ -95,6 +107,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'thanh_viens' => [
+            'provider' => 'thanh_viens',
             'table' => 'password_resets',
             'expire' => 60,
         ],

@@ -11,7 +11,7 @@
 |
 */
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/admin/dashboard', 'HomeController@dashboard');
 
@@ -51,5 +51,12 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 	});
 });
 
-Route::get('/', 'HomeController@home');
+Route::get('/', 'HomeController@home')->name('home');
+Route::get('/login', 'FrontendController@get_Login');
+Route::post('/login', 'FrontendController@post_Login');
+Route::get('/register', 'FrontendController@get_Register');
+Route::post('/register', 'FrontendController@post_Register');
+Route::get('/edit/{id}', 'FrontendController@get_Edit');
+Route::post('/edit/{id}', 'FrontendController@post_Edit');
+Route::get('logout', 'FrontendController@Logout');
 

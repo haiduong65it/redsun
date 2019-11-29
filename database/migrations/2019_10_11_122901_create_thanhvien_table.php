@@ -13,7 +13,7 @@ class CreateThanhvienTable extends Migration
      */
     public function up()
     {
-        Schema::create('thanhvien', function (Blueprint $table) {
+        Schema::create('thanh_viens', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('hoten');
             $table->date('ngaysinh');
@@ -21,8 +21,7 @@ class CreateThanhvienTable extends Migration
             $table->string('sdt');
             $table->string('diachi');
             $table->string('email')->unique();
-            $table->string('tendangnhap');
-            $table->string('matkhau');
+            $table->string('password');
             $table->string('avatar')->nullable();
             $table->timestamps();
         });

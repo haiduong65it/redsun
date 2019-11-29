@@ -1,106 +1,123 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\User;
+use App\ThanhVien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class FrontendController extends Controller
 {
     //
 
     public function get_Register(){
-    	return view('backend.admin.Register');
+    	return view('frontend.register');
     }
 
     public function post_Register(Request $request){
     	$validator = Validator::make($request->all(), [
-          'Email' => 'unique:users,email|required|min:5|max:50',
-          'Password' => 'required|min:5',
-          'Re-Password' => 'required|same:Password',
-          'Name' => 'required|min:5',
+          'InputMail' => 'unique:thanh_viens,email|required',
+          'password' => 'required|min:5',
+          're-password' => 'required|same:password',
+          'InputName' => 'required|min:5',
+          'InputSex' => 'required',
+          'InputTel' => 'required|digits_between:10,10',
+          'InputAdd' => 'required',
+          'InputBirth' => 'required|before:today',
         ],
         [
-          'Email.unique' => "Email đăng nhập này đã tồn tại",
-          'Email.required' => "Chưa nhập email đăng nhập",
-          'Email.min' => "Email đăng nhập phải có ít nhất 5 kí tự",
-          'Email.max' => "Email đăng nhập chứa tối đa 50 kí tự",
-          'Password.required' => "Chưa nhập mật khẩu",
-          'Password.min' => "Mật khẩu phải có ít nhất 5 kí tự",
-          'Name.required' => "Chưa nhập họ tên",
-          'Name.min' => "Họ tên phải có ít nhất 5 kí tự",
-          'Re-Password.required' => "Chưa nhập lại mật khẩu",
-          'Re-Password.same' => "Mật khẩu nhập lại chưa khớp",
+          'InputMail.unique' => "Email này đã tồn tại",
+          'InputMail.required' => "Chưa nhập email",
+          'password.required' => "Chưa nhập mật khẩu",
+          'password.min' => "Mật khẩu phải có ít nhất 5 kí tự",
+          'InputName.required' => "Chưa nhập họ tên",
+          'InputName.min' => "Họ tên phải có ít nhất 5 kí tự",
+          're-password.required' => "Chưa nhập lại mật khẩu",
+          're-password.same' => "Mật khẩu nhập lại chưa khớp",
+          'InputSex.required' => "Chưa chọn giới tính",
+          'InputTel.required' => "Chưa nhập số điện thoại",
+          'InputTel.digits_between' => "Số điện thoại phải có đủ 10 số",
+          'InputAdd.required' => "Chưa nhập địa chỉ",
+          'InputBirth.required' => "Chưa chọn ngày sinh",
+          'InputBirth.before' => "Ngày sinh phải trước ngày hôm nay",
         ]); 	
       if ($validator->fails()) 
       {
-        return redirect('admin/register')
-                    ->withErrors($validator)
-                    ->withInput();
+        return back()->withErrors($validator)->withInput();
       }
     	$avatar = 'default.png';
-    	$User = new User;
-  		$User->name = $request->Name;
-  		$User->email = $request->Email;
-  		$User->password = bcrypt($request->Password);
+    	$thanhvien = new ThanhVien;
+  		$thanhvien->hoten = $request->InputName;
+      $thanhvien->password = bcrypt($request->password);
+      $thanhvien->gioitinh = $request->InputSex;
+      $thanhvien->sdt = $request->InputTel;
+      $thanhvien->email = $request->InputMail;
+      $thanhvien->diachi = $request->InputAdd;
+      $thanhvien->ngaysinh = $request->InputBirth;
   		if ($request->hasfile('Avatar')){
         $file = $request->file('Avatar');
   			$name = $file->getClientOriginalName();
   			$Hinh = str_random(4)."_".$name;
-  			while(file_exists("upload/img/avatar/admin/".$Hinh)){
+  			while(file_exists("upload/img/avatar/thanhvien/".$Hinh)){
   			  $Hinh = str_random(4)."_".$name;
   			}
 
-  			$file->move('upload/img/avatar/admin', $Hinh);
+  			$file->move('upload/img/avatar/thanhvien', $Hinh);
   			$avatar = $Hinh;
   			}
 
-      $User->avatar = $avatar;
+      $thanhvien->avatar = $avatar;
 
-  		$User->save();
+  		$thanhvien->save();
       
-      return redirect('admin/login');
+      return redirect('login')->with('thongbao','Đăng kí tài khoản thành công!!!');
     }
 
     public function get_Login()
     {
-      return view('backend.admin.Login');
+      return view('frontend.login');
     }
 
     public function post_Login(Request $request)
     {
       # code...
       $validator = Validator::make($request->all(), [
-        'Email' => "Required",
-        'Password' => 'Required|min:5'
+        'email' => "Required|email",
+        'password' => 'Required|min:5'
       ],
       [
-        'Email.required' => 'Chưa nhập Email',
-        'Password.required' => 'Chưa nhập mật khẩu',
-        'Password.min' => 'Mật khẩu chứa ít nhất 5 kí tự',
+        'email.email' => 'Email không đúng định dạng abc@xxx.com',
+        'email.required' => 'Chưa nhập tên đăng nhập',
+        'password.required' => 'Chưa nhập mật khẩu',
+        'password.min' => 'Mật khẩu chứa ít nhất 5 kí tự',
       ]);
-      if (!Auth::attempt(['email' => $request->Email, 'password' => $request->Password])) 
+      $arr = [
+        'email' => $request->email, 
+        'password' => $request->password,
+      ];
+      if ($validator->fails()) 
+        {
+          return back()->withErrors($validator)->withInput();
+        }
+      if (!Auth::guard('thanhvien')->attempt($arr)) 
       {
         $validator->after(function ($validator) {
-          $validator->errors()->add('thongbao', 'Email hoặc mật khẩu không đúng');
+          $validator->errors()->add('thongbao', 'Tên đăng nhập hoặc mật khẩu không đúng');
         });
       }
       if ($validator->fails()) 
         {
           return back()->withErrors($validator)->withInput();
         }
-      if (Auth::guard('web')->attempt(['email' => $request->Email, 'password' => $request->Password])) {
-          return redirect('admin/dashboard');
-      } else {
-        return back()->withInput()->with('thongbao','Email hoặc mật khẩu không đúng');
+      if (Auth::guard('thanhvien')->attempt($arr))  {
+          return redirect()->route('home');
       }
     }
 
     public function get_Edit($id)
     {
-      $user = User::find($id);
-      return view('backend.admin.Update', ['admin'=>$user]);
+      $thanhvien = ThanhVien::find($id);
+      return view('frontend.edit', ['thanhvien' => $thanhvien]);
     }
 
     public function post_Edit(Request $request,$id)
@@ -174,7 +191,7 @@ class UserController extends Controller
 
     public function Logout()
     {
-      Auth::logout();
-      return redirect('admin/login');
+      Auth::guard('thanhvien')->logout();
+      return redirect()->route('home');
     }
 }
