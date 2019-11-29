@@ -44,7 +44,7 @@
 		      </div>
 		    @endif
 			<div>
-				<h2>Register</h2>	
+				<h2>Account</h2>	
 				<form class="row login_form" action="register" method="POST" id="contactForm">
 					<input type="hidden" name="_token" value="{{csrf_token()}}">
 					<fieldset class="col">
