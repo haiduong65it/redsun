@@ -20,7 +20,7 @@
 					<h1>Account</h1>
 					<nav class="d-flex align-items-center">
 						<a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="">Register</a>
+						<a href="">Account</a>
 					</nav>
 				</div>
 			</div>
