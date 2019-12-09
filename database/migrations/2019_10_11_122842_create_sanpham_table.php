@@ -15,9 +15,9 @@ class CreateSanphamTable extends Migration
     {
         Schema::create('sanpham', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_loaisanpham');
-            $table->bigInteger('id_baohanh');
-            $table->bigInteger('id_thuonghieu');
+            $table->bigInteger('id_loaisanpham')->unsigned();
+            $table->bigInteger('id_baohanh')->unsigned();
+            $table->bigInteger('id_thuonghieu')->unsigned();
             $table->string('tensanpham');
             $table->timestamps();
         });

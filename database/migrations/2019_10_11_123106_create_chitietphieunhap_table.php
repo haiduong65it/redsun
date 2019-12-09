@@ -15,8 +15,8 @@ class CreateChitietphieunhapTable extends Migration
     {
         Schema::create('chitietphieunhap', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_phieunhap');
-            $table->bigInteger('id_sanpham');
+            $table->bigInteger('id_phieunhap')->unsigned();
+            $table->bigInteger('id_sanpham')->unsigned();
             $table->Integer('size');
             $table->string('mau');
             $table->Integer('soluong');

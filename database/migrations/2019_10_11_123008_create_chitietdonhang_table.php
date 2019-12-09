@@ -15,8 +15,8 @@ class CreateChitietdonhangTable extends Migration
     {
         Schema::create('chitietdonhang', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_donhang');
-            $table->bigInteger('id_sanpham');
+            $table->bigInteger('id_donhang')->unsigned();
+            $table->bigInteger('id_sanpham')->unsigned();
             $table->Integer('size');
             $table->string('mau');
             $table->Integer('soluong');

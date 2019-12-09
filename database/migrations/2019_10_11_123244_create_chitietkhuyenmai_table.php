@@ -15,8 +15,8 @@ class CreateChitietkhuyenmaiTable extends Migration
     {
         Schema::create('chitietkhuyenmai', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_khuyenmai');
-            $table->bigInteger('id_sanpham');
+            $table->bigInteger('id_khuyenmai')->unsigned();
+            $table->bigInteger('id_sanpham')->unsigned();
             $table->string('thongtinkhuyenmai');
             $table->timestamps();
         });

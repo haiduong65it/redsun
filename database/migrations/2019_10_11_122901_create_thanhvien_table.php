@@ -34,6 +34,6 @@ class CreateThanhvienTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('thanhvien');
+        Schema::dropIfExists('thanh_viens');
     }
 }

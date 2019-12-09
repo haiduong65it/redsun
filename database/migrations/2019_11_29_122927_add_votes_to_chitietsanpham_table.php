@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhieunhapTable extends Migration
+class AddVotesToChitietsanphamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreatePhieunhapTable extends Migration
      */
     public function up()
     {
-        Schema::create('phieunhap', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('id_nhanvien')->unsigned();
-            $table->timestamps();
+        Schema::table('chitietsanpham', function (Blueprint $table) {
+            $table->foreign('id_sanpham')->references('id')->on('sanpham')->onDelete('cascade');
         });
     }
 
@@ -27,6 +25,8 @@ class CreatePhieunhapTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phieunhap');
+        Schema::table('chitietsanpham', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -15,7 +15,7 @@ class CreateChitietsanphamTable extends Migration
     {
         Schema::create('chitietsanpham', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_sanpham');
+            $table->bigInteger('id_sanpham')->unsigned();
             $table->Integer('size');
             $table->string('mau');
             $table->Integer('soluong');

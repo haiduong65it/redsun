@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateNhanvienTable extends Migration
 {
     /**
@@ -13,20 +11,19 @@ class CreateNhanvienTable extends Migration
      */
     public function up()
     {
-        Schema::create('nhanvien', function (Blueprint $table) {
+        Schema::create('nhan_viens', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('hoten');
             $table->date('ngaysinh');
             $table->string('gioitinh');
             $table->string('sdt');
             $table->string('diachi');
-            $table->string('tendangnhap');
-            $table->string('matkhau');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->string('avatar')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -34,6 +31,6 @@ class CreateNhanvienTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nhanvien');
+        Schema::dropIfExists('nhan_viens');
     }
 }
