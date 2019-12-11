@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Thêm mới sản phẩm')
+@section('title', 'Thêm mới nhân viên')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -8,12 +8,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Sản phẩm
+        Nhân viên
         <small>Thêm</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Sản phẩm</a></li>
+        <li><a href="#">Nhân viên</a></li>
         <li class="active">Thêm</li>
       </ol>
     </section>
@@ -24,7 +24,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3>Thêm mới sản phẩm</h3>
+              <h3>Thêm mới nhân viên</h3>
             </div>
             @if ($errors->any())
               <div class="alert alert-danger">
@@ -42,11 +42,15 @@
             <form class="forms-sample" action="admin/nhanvien/them" method="POST" enctype="multipart/form-data" style="margin: 1%;">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
               <div class="form-group">
-                <label for="InputName">Tên sản phẩm</label>
-                <input type="text" class="form-control" name="InputName" placeholder="Nhập Tên sản phẩm">
+                <label for="InputName">Họ Tên</label>
+                <input type="text" class="form-control" name="InputName" placeholder="Nhập Họ và Tên">
               </div>
               <div class="form-group">
-                <label for="InputLSP">Loại sản phẩm</label><br>
+                <label for="InputBirth">Ngày sinh</label>
+                <input type="date" class="form-control" name="InputBirth" placeholder="Chọn ngày sinh">
+              </div>
+              <div class="form-group">
+                <label for="InputSex">Giới tính</label><br>
                 <select name="InputSex">
                   <option value="Male" selected="selected">Nam</option>
                   <option value="Female">Nữ</option>

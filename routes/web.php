@@ -49,6 +49,32 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 
 		Route::get('xoa/{id}', 'ThanhvienController@xoa');
 	});
+
+	Route::group(['prefix'=>'loaisanpham'], function(){
+
+		Route::get('danhsach', 'LoaisanphamController@danhsach');
+
+		Route::get('them', 'LoaisanphamController@get_them');
+		Route::post('them', 'LoaisanphamController@post_them');
+
+		Route::get('sua/{id}', 'LoaisanphamController@get_sua');
+		Route::post('sua/{id}', 'LoaisanphamController@post_sua');
+
+		Route::get('xoa/{id}', 'LoaisanphamController@xoa');
+	});
+
+	Route::group(['prefix'=>'thuonghieu'], function(){
+
+		Route::get('danhsach', 'ThuonghieuController@danhsach');
+
+		Route::get('them', 'ThuonghieuController@get_them');
+		Route::post('them', 'ThuonghieuController@post_them');
+
+		Route::get('sua/{id}', 'ThuonghieuController@get_sua');
+		Route::post('sua/{id}', 'ThuonghieuController@post_sua');
+
+		Route::get('xoa/{id}', 'ThuonghieuController@xoa');
+	});
 });
 
 Route::get('/', 'HomeController@home')->name('home');
