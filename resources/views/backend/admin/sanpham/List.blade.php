@@ -9,8 +9,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Products
-        <small>List</small>
+        Sản phẩm
+        <small>Danh sách</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -32,15 +32,29 @@
               <table id="table" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>STT</th>
+                  <th>Mã sản phẩm</th>
                   <th>Tên sản phẩm</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                  <th>Mã loại sản phẩm</th>
+                  <th>Mã thương hiệu</th>
+                  <th>Mã bảo hành</th>
+                  <th>Chi tiết</th>
+                  <th>Sửa</th>  
+                  <th>Xóa</th>
                 </tr>
                 </thead>
                 <tbody>
-
+                  @foreach($sanpham as $sp)
+                  <tr class="odd gradeX">
+                    <td>{{$sp->id}}</td>
+                    <td>{{$sp->tensanpham}}</td>
+                    <td>{{$sp->id_loaisanpham}}</td>
+                    <td>{{$sp->id_thuonghieu}}</td>
+                    <td>{{$sp->id_baohanh}}</td>
+                    <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/sanpham/xemct/{{$sp->id}}">Xem chi tiết</a></td>
+                    <td class="center"><i class="fa fa-pencil fa-fw"></i><a href="admin/nhanvien/sua/{{$sp->id}}">Sửa</a></td>
+                    <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/nhanvien/xoa/{{$sp->id}}">Xóa</a></td>
+                  </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
@@ -61,7 +75,7 @@
 @section('script')
 <script type="text/javascript">
   $(document).ready( function () {
-    $('#table').DataTable();
+    $('#dssp').DataTable();
 } );
 </script>
 @endsection

@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Danh sách loại sản phẩm')
+@section('title', 'Danh sách bảo hành')
 
 @section('content')
 	
@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Loại sản phẩm
+       Bảo hành
         <small>Danh sách</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Loại sản phẩm</a></li>
+        <li><a href="#">Bảo hành</a></li>
         <li class="active">Danh sách</li>
       </ol>
     </section>
@@ -30,26 +30,28 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Danh sách loại sản phẩm</h3>
+              <h3 class="box-title">Danh sách bảo hành</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="dslsp" class="table table-bordered table-hover">
+              <table id="dsnv" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Tên sản phẩm</th>
+                  <th>Thời hạn bắt đầu</th>
+                  <th>Thời hạn kết thúc</th>
                   <th>Sửa</th>
                   <th>Xóa</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($loaisanpham as $lsp)
-                  <tr>
-                    <td>{{$lsp->id}}</td>
-                    <td>{{$lsp->tenloaisanpham}}</td>
-                    <td><a href="admin/loaisanpham/sua/{{$lsp->id}}" class="btn btn-success">Sửa</a></td>
-                    <td><a href="admin/loaisanpham/xoa/{{$lsp->id}}" class="btn btn-danger">Xóa</a></td>
+                @foreach($baohanh as $bh)
+                  <tr class="odd gradeX">
+                    <td>{{$bh->id}}</td>
+                    <td>{{$bh->ngaybatdau}}</td>
+                    <td>{{$bh->ngayketthuc}}</td>
+                    <td><a href="admin/baohanh/sua/{{$bh->id}}" class="btn btn-success">Sửa</a></td>
+                    <td><a href="admin/baohanh/xoa/{{$bh->id}}" class="btn btn-danger">Xóa</a></td>
                   </tr>
                 @endforeach
                 </tbody>
@@ -73,7 +75,7 @@
 @section('script')
 <script type="text/javascript">
   $(document).ready( function () {
-    $('#dslsp').DataTable();
+    $('#dsbh').DataTable();
 } );
 </script>
 @endsection

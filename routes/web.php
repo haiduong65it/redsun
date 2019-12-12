@@ -75,6 +75,48 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 
 		Route::get('xoa/{id}', 'ThuonghieuController@xoa');
 	});
+
+	Route::group(['prefix'=>'baohanh'], function(){
+
+		Route::get('danhsach', 'BaohanhController@danhsach');
+
+		Route::get('them', 'BaohanhController@get_them');
+		Route::post('them', 'BaohanhController@post_them');
+
+		Route::get('sua/{id}', 'BaohanhController@get_sua');
+		Route::post('sua/{id}', 'BaohanhController@post_sua');
+
+		Route::get('xoa/{id}', 'BaohanhController@xoa');
+	});
+
+	Route::group(['prefix'=>'sanpham'], function(){
+
+		Route::get('danhsach', 'SanphamController@danhsach');
+
+		Route::get('them', 'SanphamController@get_them');
+		Route::post('them', 'SanphamController@post_them');
+
+		Route::get('sua/{id}', 'SanphamController@get_sua');
+		Route::post('sua/{id}', 'SanphamController@post_sua');
+
+		Route::get('xoa/{id}', 'SanphamController@xoa');
+
+		Route::get('xemct/{id_sanpham}','SanphamController@get_chitiet');
+		Route::post('xemct/{id}','SanphamController@post_chitiet');
+	});
+
+	Route::group(['prefix'=>'hinhanh'], function(){
+
+		Route::get('danhsach', 'HinhanhController@danhsach');
+
+		Route::get('them', 'HinhanhController@get_them');
+		Route::post('them', 'HinhanhController@post_them');
+
+		Route::get('sua/{id}', 'HinhanhController@get_sua');
+		Route::post('sua/{id}', 'HinhanhController@post_sua');
+
+		Route::get('xoa/{id}', 'HinhanhController@xoa');
+	});
 });
 
 Route::get('/', 'HomeController@home')->name('home');

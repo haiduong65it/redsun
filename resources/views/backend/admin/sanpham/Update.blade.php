@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Cập nhật nhân viên')
+@section('title', 'Cập nhật sản phẩm')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -8,12 +8,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Nhân viên
+        Sản phẩm
         <small>Chỉnh sửa</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Nhân viên</a></li>
+        <li><a href="#">Sản phẩm</a></li>
         <li class="active">Sửa</li>
       </ol>
     </section>
@@ -24,7 +24,7 @@
         <div class="col-xs-6">
           <div class="box">
             <div class="box-header">
-              <h3>Chỉnh sửa thông tin đăng nhập của nhân viên</h3>
+              <h3>Chỉnh sửa thông tin sản phẩm</h3>
             </div>
             @if ($errors->any())
               <div class="alert alert-danger">
@@ -39,22 +39,50 @@
                 {{session('thongbao')}}
               </div>
             @endif
-            <form class="forms-sample" action="admin/nhanvien/sua/{{$nhanvien->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
+            <form class="forms-sample" action="admin/sanpham/sua/{{$sanpham->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
-              <div class="form-group">
-                <input type="checkbox" name="changeID" id="changeID">
-                <label for="InputID">Đổi Tên đăng nhập</label>
-                <input type="text" class="form-control id" name="InputID" placeholder="Nhập ID nhân viên" value="{{$nhanvien->tendangnhap}}" disabled="">
-              </div>
-              <div class="form-group">
-                <input type="checkbox" name="changePass" id="changePass">
-                <label for="InputPassword">Đổi mật khẩu</label>
-                <input type="password" class="form-control password" name="InputPassword" placeholder="Nhập Mật khẩu" disabled="">
-              </div>
-              <div class="form-group">
-                <label for="PasswordAgain">Nhập lại mật khẩu</label>
-                <input type="password" class="form-control password" name="PasswordAgain" placeholder="Nhập lại Mật khẩu" disabled="">
-              </div>
+             <div class="form-group">
+              <label for="InputLSP">Chọn loai sản phẩm</label>
+              <select  class="form-control"  name="LSP" id="LSP">
+                @foreach($loaisanpham as $lsp)
+                <option 
+                  @if ($sanpham->id_loaisanpham == $lsp->id)
+                    {{"selected"}}
+                  @endif
+                  value="{{$lsp->id}}">{{$lsp->id." - ".$lsp->tenloaisanpham}}
+                </option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="InputTH">Chọn thương hiệu</label>
+              <select  class="form-control"  name="TH" id="TH">
+                @foreach($thuonghieu as $th)
+                <option 
+                  @if ($sanpham->id_thuonghieu == $th->id)
+                    {{"selected"}}
+                  @endif
+                  value="{{$th->id}}">{{$th->id." - ".$th->tenthuonghieu}}
+                </option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="InputBH">Chọn quá trình bảo hành</label>
+              <select  class="form-control"  name="BH" id="BH">
+                @foreach($baohanh as $bh)
+                  <option 
+                    @if ($sanpham->id_baohanh == $bh->id)
+                      {{"selected"}}
+                    @endif
+                  value="{{$bh->id}}">{{$bh->id." - ".$bh->thoihan." tháng"}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="InputDG">Đơn giá</label>
+              <input type="number" class="form-control" name="InputDG" placeholder="Nhập đơn giá" value="{{$sanpham->dongia}}">
+            </div>
               <button type="submit" class="btn btn-success mr-2">Thay đổi</button>
               <button type="reset" class="btn btn-light">Làm mới</button>
             </form>
@@ -104,6 +132,7 @@
       </div>
       <!-- /.row -->
         
+            </div>
     </section>
     <!-- /.content -->
   </div>
