@@ -19,7 +19,7 @@ class NhanvienController extends Controller
     public function post_them(Request $request){
     	$this->validate($request,
         [
-          'InputID' => 'unique:NhanVien,tendangnhap|required|min:5|max:50',
+          'InputID' => 'unique:nhan_viens,email|required',
           'InputPassword' => 'required|min:5',
           'InputName' => 'required|min:5',
           'InputTel' => 'required|digits_between:10,10',
@@ -30,8 +30,6 @@ class NhanvienController extends Controller
         [
           'InputID.unique' => "tên đăng nhập này đã tồn tại",
           'InputID.required' => "Chưa nhập tên đăng nhập",
-          'InputID.min' => "tên đăng nhập phải có ít nhất 5 kí tự",
-          'InputID.max' => "tên đăng nhập chứa tối đa 50 kí tự",
           'InputPassword.required' => "Chưa nhập mật khẩu",
           'InputPassword.min' => "Mật khẩu phải có ít nhất 5 kí tự",
           'InputName.required' => "Chưa nhập tên nhân viên",
@@ -49,8 +47,8 @@ class NhanvienController extends Controller
   		$nhanvien->gioitinh = $request->InputSex;
   		$nhanvien->sdt = $request->InputTel;
   		$nhanvien->diachi = $request->InputAddress;
-  		$nhanvien->tendangnhap = $request->InputID;
-  		$nhanvien->matkhau = bcrypt($request->InputPassword);
+  		$nhanvien->email = $request->InputID;
+  		$nhanvien->password = bcrypt($request->InputPassword);
   		if ($request->hasfile('InputAvatar')){
         $file = $request->file('InputAvatar');
   			$name = $file->getClientOriginalName();
@@ -82,15 +80,13 @@ class NhanvienController extends Controller
       if($request->changeID == "on"){
         $this->validate($request,
         [
-          'InputID' => 'unique:NhanVien,tendangnhap|required|min:5|max:50',
+          'InputID' => 'unique:nhan_viens,email|required',
         ],
         [
           'InputID.unique' => "tên đăng nhập này đã tồn tại",
           'InputID.required' => "Chưa nhập tên đăng nhập",
-          'InputID.min' => "tên đăng nhập phải có ít nhất 5 kí tự",
-          'InputID.max' => "tên đăng nhập chứa tối đa 50 kí tự",
         ]);
-        $nhanvien->tendangnhap = $request->InputID;
+        $nhanvien->email = $request->InputID;
       }
       if($request->changePass == "on"){
         $this->validate($request,

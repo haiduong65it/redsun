@@ -44,7 +44,7 @@
                   <th>Số Điện Thoại</th>
                   <th>Địa chỉ</th>
                   <th>Avatar</th>
-                  <th>Tên Đăng Nhập</th>
+                  <th>Email</th>
                   <th>Sửa</th>
                   <th>Xóa</th>
                 </tr>
@@ -59,7 +59,7 @@
                     <td>{{$nv->sdt}}</td>
                     <td>{{$nv->diachi}}</td>
                     <td><img src="upload/img/avatar/nhanvien/{{$nv->avatar}}" width="100px"></td>
-                    <td>{{$nv->tendangnhap}}</td>
+                    <td>{{$nv->email}}</td>
                     <td><a href="admin/nhanvien/sua/{{$nv->id}}" class="btn btn-success">Sửa</a></td>
                     <td><a href="admin/nhanvien/xoa/{{$nv->id}}" class="btn btn-danger">Xóa</a></td>
                   </tr>

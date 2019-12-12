@@ -20,7 +20,7 @@ class ThuonghieuController extends Controller
     	$this->validate($request,
         [
   
-          'InputName' => 'required|min:5',
+          'InputName' => 'required',
         ],
         [
           'InputName.required' => "Chưa nhập tên thương hiệu",
