@@ -20,7 +20,7 @@ class LoaisanphamController extends Controller
     	$this->validate($request,
         [
   
-          'InputName' => 'required|min:5',
+          'InputName' => 'required',
         ],
         [
           'InputName.required' => "Chưa nhập tên loại sản phẩm",

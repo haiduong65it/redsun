@@ -43,8 +43,8 @@
               <input type="hidden" name="_token" value="{{csrf_token()}}">
               <div class="form-group">
                 <input type="checkbox" name="changeID" id="changeID">
-                <label for="InputID">Đổi Tên đăng nhập</label>
-                <input type="text" class="form-control id" name="InputID" placeholder="Nhập ID nhân viên" value="{{$nhanvien->tendangnhap}}" disabled="">
+                <label for="InputID">Đổi Email đăng nhập</label>
+                <input type="email" class="form-control id" name="InputID" placeholder="Nhập ID nhân viên" value="{{$nhanvien->email}}" disabled="">
               </div>
               <div class="form-group">
                 <input type="checkbox" name="changePass" id="changePass">

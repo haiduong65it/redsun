@@ -70,8 +70,8 @@
                 <input type="file" class="form-control" name="InputAvatar" placeholder="Chọn ảnh làm avatar">
               </div>
               <div class="form-group">
-                <label for="InputID">Tên đăng nhập</label>
-                <input type="text" class="form-control" name="InputID" placeholder="Nhập ID nhân viên">
+                <label for="InputID">Email</label>
+                <input type="email" class="form-control" name="InputID" placeholder="Nhập ID nhân viên">
               </div>
               <div class="form-group">
                 <label for="InputPassword">Mật Khẩu</label>
