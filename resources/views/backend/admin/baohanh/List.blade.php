@@ -34,7 +34,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="dsnv" class="table table-bordered table-hover">
+              <table id="dsbh" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>ID</th>

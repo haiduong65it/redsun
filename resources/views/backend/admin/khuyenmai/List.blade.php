@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Danh sách nhân viên')
+@section('title', 'Danh sách khuyến mãi')
 
 @section('content')
 	
@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Nhân viên
+        Khuyến mãi
         <small>Danh sách</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Nhân viên</a></li>
+        <li><a href="#">Khuyến mãi</a></li>
         <li class="active">Danh sách</li>
       </ol>
     </section>
@@ -30,38 +30,32 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Danh sách nhân viên</h3>
+              <h3 class="box-title">Danh sách khuyến mãi</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="dsnv" class="table table-bordered table-hover">
+              <table id="dskm" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Họ Tên</th>
-                  <th>Ngày Sinh</th>
-                  <th>Giới Tính</th>
-                  <th>Số Điện Thoại</th>
-                  <th>Địa chỉ</th>
-                  <th>Avatar</th>
-                  <th>Tên Đăng Nhập</th>
+                  <th>Giảm giá</th>
+                  <th>Ngày bắt đầu</th>
+                  <th>Ngày kết thúc</th>
+                  <th>Danh sách được nhận ưu đãi</th>  
                   <th>Sửa</th>
                   <th>Xóa</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($nhanvien as $nv)
+                @foreach($khuyenmai as $km)
                   <tr>
-                    <td>{{$nv->id}}</td>
-                    <td>{{$nv->hoten}}</td>
-                    <td>{{date('d/m/Y', strtotime($nv->ngaysinh))}}</td>
-                    <td>@if ($nv->gioitinh == 'Male') {{'Nam'}} @else {{'Nữ'}} @endif</td>
-                    <td>{{$nv->sdt}}</td>
-                    <td>{{$nv->diachi}}</td>
-                    <td><img src="upload/img/avatar/nhanvien/{{$nv->avatar}}" width="100px"></td>
-                    <td>{{$nv->tendangnhap}}</td>
-                    <td><a href="admin/nhanvien/sua/{{$nv->id}}" class="btn btn-success">Sửa</a></td>
-                    <td><a href="admin/nhanvien/xoa/{{$nv->id}}" class="btn btn-danger">Xóa</a></td>
+                    <td>{{$km->id}}</td>
+                    <td>{{$km->giamgia}}</td>
+                    <td>{{$km->ngaybatdau}}</td>
+                    <td>{{$km->ngayketthuc}}</td>
+                    <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/khuyenmai/xemdssp/{{$km->id}}">Xem danh sách</a></td>
+                    <td><a href="admin/khuyenmai/sua/{{$km->id}}" class="btn btn-success">Sửa</a></td>
+                    <td><a href="admin/khuyenmai/xoa/{{$km->id}}" class="btn btn-danger">Xóa</a></td>
                   </tr>
                 @endforeach
                 </tbody>
@@ -85,7 +79,7 @@
 @section('script')
 <script type="text/javascript">
   $(document).ready( function () {
-    $('#dsnv').DataTable();
+    $('#dskm').DataTable();
 } );
 </script>
 @endsection

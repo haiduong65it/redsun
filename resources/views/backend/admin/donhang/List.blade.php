@@ -14,7 +14,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">ĐƠn hàng</a></li>
+        <li><a href="#">Đơn hàng</a></li>
         <li class="active">Danh sách</li>
       </ol>
     </section>
@@ -37,34 +37,36 @@
               <table id="table" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Họ Tên</th>
-                  <th>Ngày Sinh</th>
-                  <th>Giới Tính</th>
-                  <th>Số Điện Thoại</th>
-                  <th>Địa chỉ</th>
-                  <th>Email</th>
-                  <th>Avatar</th>
-                  <th>Tên Đăng Nhập</th>
-                  <th>Sửa</th>
-                  <th>Xóa</th>
+                    <th>ID</th>
+                    <th>ID nhân viên</th>
+                    <th>Họ tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Phương thức thanh toán</th>
+                    <th>Ngày đặt</th>
+                    <th>Tổng tiền</th>
+                    <th>Tình trạng đơn hàng</th>
+                    <th>Chi tiết</th>
+                    <th>Duyệt đơn hàng</th>  
+                    <th>Xóa</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($thanhvien as $tv)
-                  <tr>
-                    <td>{{$tv->id}}</td>
-                    <td>{{$tv->hoten}}</td>
-                    <td>{{date('d/m/Y', strtotime($tv->ngaysinh))}}</td>
-                    <td>@if ($tv->gioitinh == 'Male') {{'Nam'}} @else {{'Nữ'}} @endif</td>
-                    <td>{{$tv->sdt}}</td>
-                    <td>{{$tv->diachi}}</td>
-                    <td>{{$tv->email}}</td>
-                    <td><img src="upload/img/avatar/thanhvien/{{$tv->avatar}}" width="50px"></td>
-                    <td>{{$tv->tendangnhap}}</td>
-                    <td><a href="admin/thanhvien/sua/{{$tv->id}}" class="btn btn-success">Sửa</a></td>
-                    <td><a href="admin/thanhvien/xoa/{{$tv->id}}" class="btn btn-danger">Xóa</a></td>
-                  </tr>
+                @foreach($donhang as $dh)
+                  <tr class="odd gradeX">
+                    <td>{{$dh->id}}</td>                    
+                    <td>{{$dh->id_nhanvien}}</td>
+                    <td>{{$dh->hoten}}</td>
+                    <td>{{$dh->sdt}}</td>
+                    <td>{{$dh->diachi}}</td>
+                    <td>{{$dh->phuongthucthanhtoan}}</td>
+                    <td>{{$dh->ngaydat}}</td>
+                    <td>{{number_format($dh->tongtien)}} VNĐ</td>
+                    <td>{{$dh->tinhtrangdonhang}}</td>
+                    <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/donhang/chitiet/{{$dh->id}}">Xem chi tiết</a></td>
+                    <td class="center"><i class="fa fa-pencil fa-fw"></i><a href="admin/donhang/duyetdon/{{$dh->id}}">Duyệt đơn hàng</a></td>
+                    <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/donhang/xoa/{{$dh->id}}">Xóa</a></td>
+            </tr>
                 @endforeach
                 </tbody>
               </table>

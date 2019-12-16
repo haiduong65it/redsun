@@ -29,7 +29,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="table" class="table table-bordered table-hover">
+              <table id="dssp" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>Mã sản phẩm</th>

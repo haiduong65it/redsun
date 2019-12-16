@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Danh sách hình ảnh')
+@section('title', 'Chi tiết khuyến mãi')
 
 @section('content')
 	
@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Hình ảnh
+        Chi tiết khuyến mãi
         <small>Danh sách</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Hình ảnh</a></li>
+        <li><a href="#"> Chi tiết khuyến mãi</a></li>
         <li class="active">Danh sách</li>
       </ol>
     </section>
@@ -30,34 +30,26 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Danh sách hình ảnh</h3>
+              <h3 class="box-title">Danh sách khuyến mãi</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="dsha" class="table table-bordered table-hover">
+              <table id="dsctkm" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>ID chi tiết khuyến mãi</th>
                   <th>Mã sản phẩm</th>
-                  <th>Hình ảnh</th>
-                  <th>Hiển thị</th>
-                  <th>Màu</th>
-                  <th>Sửa</th>
-                  <th>Xóa</th>
+                  <th>Thông tin khuyến mãi</th>
+                  <th><i class="fa fa-plus-circle fa-fw"></i><a href="admin/khuyenmai/themct/{{$khuyenmai->id}}">Thêm</a></th>  
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($hinhanh as $ha)
-                  <tr>
-                    <td>{{$ha->id}}</td>
-                    <id>{{$ha->id_sanpham}}</id>
-                    <td>
-                      <img src="img/{{$ha->file_anh}}">
-                    </td>
-                    <td>{{$ha->noihienthi}}</td>
-                    <td>{{$ha->mau}}</td>
-                    <td><a href="admin/hinhanh/sua/{{$ha->id}}" class="btn btn-success">Sửa</a></td>
-                    <td><a href="admin/hinhanh/xoa/{{$ha->id}}" class="btn btn-danger">Xóa</a></td>
+                @foreach($chitietkhuyenmai as $ctkm)
+                  <tr class="odd gradeX"  >
+                    <td>{{$ctkm->id}}</td>
+                    <td>{{$ctkm->id_sanpham}}</td>
+                    <td>{{$ct->thongtinkhuyenmai}}</td>
+                    <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/khuyenmai/xoact/{{$ctkm->id}}">Xóa</a></td>
                   </tr>
                 @endforeach
                 </tbody>
@@ -81,7 +73,7 @@
 @section('script')
 <script type="text/javascript">
   $(document).ready( function () {
-    $('#dsha').DataTable();
+    $('#dsctkm').DataTable();
 } );
 </script>
 @endsection

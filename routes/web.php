@@ -117,6 +117,63 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 
 		Route::get('xoa/{id}', 'HinhanhController@xoa');
 	});
+
+	Route::group(['prefix'=>'khuyenmai'], function(){
+
+		Route::get('danhsach', 'KhuyenmaiController@danhsach');
+
+		Route::get('them', 'KhuyenmaiController@get_them');
+		Route::post('them', 'KhuyenmaiController@post_them');
+
+		Route::get('sua/{id}', 'KhuyenmaiController@get_sua');
+		Route::post('sua/{id}', 'KhuyenmaiController@post_sua');
+
+		Route::get('xoa/{id}', 'KhuyenmaiController@xoa');
+
+		Route::get('xemdssp/{id}','KhuyenmaiController@get_dssp');
+		Route::get('themct/{id}','KhuyenmaiController@get_themct');
+		Route::post('themct/{id}','KhuyenmaiController@post_themct');
+
+		Route::get('xoact/{id}','KhuyenmaiController@get_xoact');
+	});
+
+	Route::group(['prefix'=>'phieunhap'], function(){
+
+    	Route::get('danhsach','PhieunhapController@getDanhsach');
+
+    	Route::get('chitiet/{id}','PhieunhapController@get_chitiet');
+
+    	Route::get('them','PhieunhapController@get_them');
+		Route::post('them','PhieunhapController@post_them');
+
+		Route::get('sua/{id}','PhieunhapController@get_sua');
+		Route::post('sua/{id}','PhieunhapController@post_sua');
+
+		Route::get('xoa/{id}','PhieunhapController@get_xoa');
+
+		Route::get('themct/{id}','PhieunhapController@get_themCT');
+		Route::post('themct/{id}','PhieunhapController@post_themCT');
+	});
+
+	Route::group(['prefix'=>'donhang'], function () {
+
+    	Route::get('danhsach','DonhangController@danhsach');
+
+		Route::get('duyetdon/{id}','DonhangController@get_duyet');
+		Route::post('duyetdon/{id}','DonhangController@post_duyet');
+
+		Route::get('chitiet/{id}','DonhangController@get_chitiet');
+		Route::get('xoa/{id}','DonhangNVController@get_xoa');
+	});
+
+	Route::group(['prefix'=>'donhang'], function () {
+    	Route::get('danhsach','DonhangNVController@danhsach');
+
+		Route::get('tinhtrangdonhang/{id}','DonhangNVController@get_capnhatTTDH');
+		Route::post('tinhtrangdonhang/{id}','DonhangNVController@post_capnhatTTDH');
+
+		Route::get('chitiet/{id}','DonhangNVController@get_chitiet');
+	});
 });
 
 Route::get('/', 'HomeController@home')->name('home');

@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Thêm mới phiếu nhập')
+@section('title', 'Chi tiết nhập kho')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -8,12 +8,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Phiếu nhập
+       Chu tiết nhập kho
         <small>Thêm</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Phiếu nhập</a></li>
+        <li><a href="#">Chi tiết nhập kho</a></li>
         <li class="active">Thêm</li>
       </ol>
     </section>
@@ -24,7 +24,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3>Thêm mới phiếu nhập</h3>
+              <h3>Thêm mới chi tiết nhập kho</h3>
             </div>
             @if ($errors->any())
               <div class="alert alert-danger">
@@ -40,11 +40,26 @@
               </div>
             @endif
             <form class="forms-sample" action="admin/phieunhap/them" method="POST" enctype="multipart/form-data" style="margin: 1%;">
-              <input type="hidden" name="_token" value="{{csrf_token()}}">
-              <div class="form-group">
-                <label for="Inputdate">Ngày nhập kho</label>
-                <input type="date" class="form-control" name="Inputdate" placeholder="Chọn ngày nhập kho">
-              </div>
+            <div class="form-group">
+              <label for="InputSP">Sản Phẩm</label>
+              <select  class="form-control"  name="InputSP" id="InputSP">
+                @foreach($sanpham as $sp)
+                  <option value="{{$sp->id}}">{{$sp->tensanpham}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="InputSize">Size</label>
+               <input type="number" class="form-control" name="InputSIze">
+            </div>
+            <div class="form-group">
+              <label for="InputMau">Màu</label>
+               <input type="text" class="form-control" name="InputMau">
+            </div>
+            <div class="form-group">
+              <label for="InputSL">Số lượng</label>
+               <input type="number" class="form-control" name="InputSL">
+            </div>
               <button type="submit" class="btn btn-success mr-2">Thêm</button>
               <button type="reset" class="btn btn-light">Làm mới</button>
             </form>

@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Thêm mới phiếu nhập')
+@section('title', 'Đơn hàng')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -8,23 +8,23 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Phiếu nhập
-        <small>Thêm</small>
+        Đơn hàng
+        <small>Chỉnh sửa</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Phiếu nhập</a></li>
-        <li class="active">Thêm</li>
+        <li><a href="#">Đơn hàng</a></li>
+        <li class="active">Sửa</li>
       </ol>
     </section>
 
     <!-- Main content -->
-    <section class="content" style="margin: 0 auto; width: 60%;">
+    <section class="content">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-6">
           <div class="box">
             <div class="box-header">
-              <h3>Thêm mới phiếu nhập</h3>
+              <h3>Chỉnh sửa thông tin đơn hàng</h3>
             </div>
             @if ($errors->any())
               <div class="alert alert-danger">
@@ -39,24 +39,23 @@
                 {{session('thongbao')}}
               </div>
             @endif
-            <form class="forms-sample" action="admin/phieunhap/them" method="POST" enctype="multipart/form-data" style="margin: 1%;">
-              <input type="hidden" name="_token" value="{{csrf_token()}}">
+            <form class="forms-sample" action="admin/donhang/sua/{{$donhang->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
               <div class="form-group">
-                <label for="Inputdate">Ngày nhập kho</label>
-                <input type="date" class="form-control" name="Inputdate" placeholder="Chọn ngày nhập kho">
+                <label for="InputIDNV">Nhân viên giao hàng</label>
+                <select  class="form-control"  name="nvgh" id="nvgh">
+                  @foreach($nhanvien as $nv)
+                  <option value="{{$nv->IDNV}}">{{$nv->hoten}}</option>
+                  @endforeach
+                </select>
               </div>
-              <button type="submit" class="btn btn-success mr-2">Thêm</button>
+              <button type="submit" class="btn btn-success mr-2">Duyệt</button>
               <button type="reset" class="btn btn-light">Làm mới</button>
             </form>
           </div>
           <!-- /.box -->
         </div>
-        <!-- /.col -->
       </div>
       <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+    </section> 
+</div>    
 @endsection
-

@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Danh sách hình ảnh')
+@section('title', 'Chi tiết nhập kho')
 
 @section('content')
 	
@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Hình ảnh
+        Chi tiết nhập kho
         <small>Danh sách</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Hình ảnh</a></li>
+        <li><a href="#"> Chi tiết nhập kho</a></li>
         <li class="active">Danh sách</li>
       </ol>
     </section>
@@ -30,36 +30,37 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Danh sách hình ảnh</h3>
+              <h3 class="box-title">Danh sách nhập kho</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="dsha" class="table table-bordered table-hover">
+              <table id="dsctpn" class="table table-bordered table-hover">
                 <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Mã sản phẩm</th>
-                  <th>Hình ảnh</th>
-                  <th>Hiển thị</th>
-                  <th>Màu</th>
-                  <th>Sửa</th>
-                  <th>Xóa</th>
-                </tr>
+               <tr align="center">
+                <th>STT</th>
+                <th>Sản phẩm</th>
+                <th>Size</th>
+                <th>Màu</th>
+                <th>Số lượng</th>
+              </tr>
                 </thead>
                 <tbody>
-                @foreach($hinhanh as $ha)
-                  <tr>
-                    <td>{{$ha->id}}</td>
-                    <id>{{$ha->id_sanpham}}</id>
+                  <?php $d = 1?>
+                  @foreach($chitietphieunhap as $ct)
+                  <tr class="odd gradeX" align="center">
+                    <td>{{$d++}}</td>
                     <td>
-                      <img src="img/{{$ha->file_anh}}">
+                      @foreach($sanpham as $sp)
+                        @if ($sp->id == $ct->id_sanpham)
+                          {{$sp->tensanpham}}
+                        @endif
+                      @endforeach
                     </td>
-                    <td>{{$ha->noihienthi}}</td>
-                    <td>{{$ha->mau}}</td>
-                    <td><a href="admin/hinhanh/sua/{{$ha->id}}" class="btn btn-success">Sửa</a></td>
-                    <td><a href="admin/hinhanh/xoa/{{$ha->id}}" class="btn btn-danger">Xóa</a></td>
+                    <td>{{$ct->size}}</td>
+                    <td>{{$ct->mau}}</td>
+                    <td>{{$ct->soluong}}</td>
                   </tr>
-                @endforeach
+                  @endforeach
                 </tbody>
               </table>
            
@@ -81,7 +82,7 @@
 @section('script')
 <script type="text/javascript">
   $(document).ready( function () {
-    $('#dsha').DataTable();
+    $('#dsctpn').DataTable();
 } );
 </script>
 @endsection
