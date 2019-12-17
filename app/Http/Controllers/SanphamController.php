@@ -112,7 +112,7 @@ class SanphamController extends Controller
   public function get_chitiet($id){
     $sanpham = SanPham::find($id);
     $chitietsanpham = CTSanPham::where('id',$id)->get();
-    return view('backend.admin.sanpham.detail',['chitietsanpham'=>$chitietsanpham,'sanpham'=>$sanpham]);
+    return view('backend.admin.sanpham.Detail',['chitietsanpham'=>$chitietsanpham,'sanpham'=>$sanpham]);
   }
 
   public function post_chitiet(Request $request, $id_sanpham){
