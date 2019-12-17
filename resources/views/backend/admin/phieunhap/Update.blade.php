@@ -13,7 +13,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Nhân viên</a></li>
+        <li><a href="#">Phiếu nhập</a></li>
         <li class="active">Sửa</li>
       </ol>
     </section>
@@ -39,11 +39,11 @@
                 {{session('thongbao')}}
               </div>
             @endif
-            <form class="forms-sample" action="admin/nhanvien/sua/{{$nhanvien->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
+            <form class="forms-sample" action="admin/phieunhap/sua/{{$phieunhap->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
               <div class="form-group">
                 <label for="Inputdate">Ngày nhập kho</label>
-                <input type="date" class="form-control" name="Inputdate" placeholder="Chọn ngày nhập kho" value="{{$nhapkho->create_at}}">
+                <input type="date" class="form-control" name="Inputdate" placeholder="Chọn ngày nhập kho" value="{{$phieunhap->created_at}}">
               </div>
               <button type="submit" class="btn btn-success mr-2">Thay đổi</button>
               <button type="reset" class="btn btn-light">Làm mới</button>

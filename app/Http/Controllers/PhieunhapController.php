@@ -26,7 +26,7 @@ class PhieunhapController extends Controller
     function post_them(Request $request){
       $nhapkho = new PhieuNhap;
       $nhapkho->id_nhanvien = Auth::user()->email;
-      $nhapkho->create_at = $request->Inputdate;
+      $nhapkho->created_at = $request->Inputdate;
 
       $nhapkho->save();
 
@@ -38,17 +38,17 @@ class PhieunhapController extends Controller
       $nhapkho = PhieuNhap::find($id);
       $ctnhapkho = CTPhieuNhap::where('id',$id)->get();
       $sanpham = SanPham::all();
-      return view('admin/phieunhap/ctnhapkho',['chitietphieunhap'=>$ctnhapkho,'phieunhap'=>$nhapkho,'sanpham'=>$sanpham]);
+      return view('backend.admin.phieunhap.List_note',['chitietphieunhap'=>$ctnhapkho,'phieunhap'=>$nhapkho,'sanpham'=>$sanpham]);
     }
 
     public function get_sua($id){
       $nhapkho = PhieuNhap::find($id);
-      return view('admin/phieunhap/sua',['phieunhap'=>$nhapkho]);
+      return view('backend.admin.phieunhap.Update',['phieunhap'=>$nhapkho]);
     }
 
     public function post_sua(Request $request, $id){
       $nhapkho = PhieuNhap::find($id);
-      $nhapkho->create_at = $request->Inputdate;
+      $nhapkho->created_at = $request->Inputdate;
 
       $nhapkho->save();
 
@@ -67,7 +67,7 @@ class PhieunhapController extends Controller
       $sanpham = SanPham::all();
       $nhapkho = PhieuNhap::find($id);
 
-      return view('admin/phieunhap/themct',['sanpham'=>$sanpham,'phieunhap'=>$nhapkho]);
+      return view('backend.admin.phieunhap.Create_detail',['sanpham'=>$sanpham,'phieunhap'=>$nhapkho]);
     }
 
     function post_themCT(Request $request, $id){

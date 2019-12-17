@@ -52,14 +52,14 @@
                     <td>{{$pn->id}}</td>
                       <td>
                         @foreach ($nhanvien as $nv)
-                          @if ($nv->id == $nk->id_nhanvien) 
+                          @if ($nv->id == $pn->id_nhanvien) 
                             {{$nv->hoten}}
                           @endif
                         @endforeach
                       </td>
-                    <td>{{$pn->create_at}}</td>
-                    <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/phieunhap/themct/{{$pn->mank}}">Thêm chi tiết</a></td>
-                    <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/phieunhap/chitiet/{{$pn->mank}}">Xem chi tiết</a></td>
+                    <td>{{$pn->created_at}}</td>
+                    <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/phieunhap/themct/{{$pn->id}}">Thêm chi tiết</a></td>
+                    <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/phieunhap/chitiet/{{$pn->id}}">Xem chi tiết</a></td>
                     <td><a href="admin/phieunhap/sua/{{$pn->id}}" class="btn btn-success">Sửa</a></td>
                     <td><a href="admin/phieunhap/xoa/{{$pn->id}}" class="btn btn-danger">Xóa</a></td>
                   </tr>

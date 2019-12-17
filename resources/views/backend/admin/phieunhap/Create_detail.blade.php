@@ -39,7 +39,7 @@
                 {{session('thongbao')}}
               </div>
             @endif
-            <form class="forms-sample" action="admin/phieunhap/them" method="POST" enctype="multipart/form-data" style="margin: 1%;">
+            <form class="forms-sample" action="admin/phieunhap/themct/{{$phieunhap->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
             <div class="form-group">
               <label for="InputSP">Sản Phẩm</label>
               <select  class="form-control"  name="InputSP" id="InputSP">

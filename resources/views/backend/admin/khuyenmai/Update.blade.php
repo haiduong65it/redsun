@@ -40,7 +40,7 @@
               </div>
             @endif
             <form class="forms-sample" action="admin/khuyenmai/sua/{{$khuyenmai->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
-              <input type="hidden" name="_token" value="{{csrf_token()}}">
+              
                <div class="form-group">
                 <label for="InputGG">Giảm giá</label>
                 <input type="text" class="form-control" name="InputGG" placeholder="Nhập số giảm giá" value="{{$khuyenmai->giamgia}}">
