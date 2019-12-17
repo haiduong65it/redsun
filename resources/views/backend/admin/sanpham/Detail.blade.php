@@ -37,7 +37,7 @@
         <div class="form-group">
           <label for="InputSL">Số lượng</label>
           <input type="number" class="form-control" name="InputMau" placeholder="Nhập màu" 
-          value="{{$chitietsanpham->mau}}">
+          value="{{$chitietsanpham->soluong}}">
         </div>
         <div class="form-group">
           <label for="InputDG">ĐƠn Giá</label>
