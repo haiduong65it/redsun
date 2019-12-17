@@ -20,7 +20,7 @@ class BaohanhController extends Controller
         [
           /*'InputMaBH' => 'unique:baohanh,MaBH|required|max:5',*/
           'InputTHBD' => 'required|after:today',
-          'InputTHKT' => 'required|after:InputFdate',
+          'InputTHKT' => 'required|after:InputTHBD',
         ],
         [
          /* 'InputMaBH.unique' => "Mã bảo hành này đã tồn tại",
@@ -53,7 +53,7 @@ class BaohanhController extends Controller
       $this->validate($request,
         [
           'InputTHBD' => 'required|after:today',
-          'InputTHKT' => 'required|after:InputFdate',
+          'InputTHKT' => 'required|after:InputTHBD',
         ],
         [        
           'InputTHBD.required' => "Chưa chọn ngày áp dụng",

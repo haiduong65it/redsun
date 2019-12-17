@@ -13,7 +13,7 @@
 
 //Auth::routes();
 
-Route::get('/admin/dashboard', 'HomeController@dashboard');
+Route::get('/admin/dashboard', 'HomeController@dashboard')->middleware('AdminLogin');
 
 Route::get('/admin/register', 'UserController@get_Register');
 Route::post('/admin/register', 'UserController@post_Register');
