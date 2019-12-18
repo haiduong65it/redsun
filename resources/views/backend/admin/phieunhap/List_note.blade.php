@@ -36,7 +36,7 @@
             <div class="box-body">
               <table id="dsctpn" class="table table-bordered table-hover">
                 <thead>
-               <tr align="center">
+               <tr>
                 <th>STT</th>
                 <th>Sản phẩm</th>
                 <th>Size</th>
@@ -47,7 +47,7 @@
                 <tbody>
                   <?php $d = 1?>
                   @foreach($chitietphieunhap as $ct)
-                  <tr class="odd gradeX" align="center">
+                  <tr class="odd gradeX">
                     <td>{{$d++}}</td>
                     <td>
                       @foreach($sanpham as $sp)

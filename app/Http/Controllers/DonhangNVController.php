@@ -12,7 +12,7 @@ class DonhangNVController extends Controller
 {
     
     function danhsach(){
-        $donhang = donhang::where('TTDH','<>','')->get();
+        $donhang = donhang::where('tinhtrangdonhang','<>','')->get();
         return view('backend.admin.donhang.List',['donhang'=>$donhang]);
     }
 

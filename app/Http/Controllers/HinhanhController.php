@@ -10,7 +10,8 @@ class HinhanhController extends Controller
 {
     function danhsach(){
         $hinhanh = HinhAnh::all();
-        return view('backend.admin.hinhanh.List',['hinhanh'=>$hinhanh]);
+        $sanpham = SanPham::all();
+        return view('backend.admin.hinhanh.List',['hinhanh'=>$hinhanh, 'sanpham' =>$sanpham]);
     }
     
     function get_them(){
@@ -26,7 +27,7 @@ class HinhanhController extends Controller
           'InputMau' => 'required',
         ],
         [
-          'InputGhichu.required' => "Chưa nhập ghi chú",
+          'InputHienthi.required' => "Chưa nhập hiển thị",
           'InputHinh.required' => "Chọn chọn file ảnh nào",
           'InputMau.required' => "Chưa nhập màu",
         ]);
@@ -40,13 +41,13 @@ class HinhanhController extends Controller
           }
           $name = $file->getClientOriginalName();
           $Hinh = str_random(4)."_".$name;
-          while(file_exists("upload/slide/".$Hinh)){
+          while(file_exists("upload/img/product/".$Hinh)){
               $Hinh = str_random(4)."_".$name;
           }
        
-          $file->move('img', $Hinh);
+          $file->move('upload/img/product/', $Hinh);
           $hinhanh = new HinhAnh;
-          $hinhanh->id_sanpham = $request->id;
+          $hinhanh->id_sanpham = $request->MaSP;
           $hinhanh->file_anh = $Hinh;
           $hinhanh->noihienthi = $request->InputHienthi;
           $hinhanh->mau = $request->InputMau;
@@ -87,11 +88,11 @@ class HinhanhController extends Controller
         }
         $name = $file->getClientOriginalName();
         $Hinh = str_random(4)."_".$name;
-        while(file_exists("upload/slide/".$Hinh)){
+        while(file_exists("upload/img/product/".$Hinh)){
             $Hinh = str_random(4)."_".$name;
         }
      
-        $file->move('img', $Hinh);
+        $file->move('upload/img/product/', $Hinh);
       }
       $hinhanh->ghichu = $request->InputHienthi;
 
@@ -101,7 +102,7 @@ class HinhanhController extends Controller
       
     }
 
-    function get_xoa($id){
+    function xoa($id){
       $hinhanh = HinhAnh::find($id);
       $hinhanh->delete();
 

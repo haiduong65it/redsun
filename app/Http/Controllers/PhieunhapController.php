@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\PhieuNhap;
 use App\CTPhieuNhap;
-use App\NhanVien;
+use App\User;
 use App\SanPham;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,20 +15,31 @@ class PhieunhapController extends Controller
     
     function danhsach(){
         $nhapkho = PhieuNhap::all();
-        $nhanvien = NhanVien::all();
-        return view('backend.admin.phieunhap.List',['phieunhap'=>$nhapkho,'nhanvien'=>$nhanvien]);
+        $user = User::all();
+        return view('backend.admin.phieunhap.List',['phieunhap'=>$nhapkho,'user'=>$user]);
     }
 
     function get_them(){
-      return view('backend.admin.phieunhap.Create');
+      $sanpham = SanPham::all();
+      return view('backend.admin.phieunhap.Create', ['sanpham' => $sanpham]);
     }
 
     function post_them(Request $request){
       $nhapkho = new PhieuNhap;
-      $nhapkho->id_nhanvien = Auth::user()->email;
-      $nhapkho->created_at = $request->Inputdate;
-
+      $nhapkho->id_nhanvien = Auth::user()->id;
       $nhapkho->save();
+
+      foreach ($request->InputMaSP as $key => $value) {
+        # code...
+        $ctphieunhap = new CTPhieuNhap;
+        $ctphieunhap->size = $value;
+        $ctphieunhap->mau = $request->InputMau[$key];
+        $ctphieunhap->soluong = $request->InputSL[$key];
+        $ctphieunhap->id_sanpham = $value;
+        $ctphieunhap->id_phieunhap = $nhapkho->id;
+
+        $ctphieunhap->save();
+      }
 
       return redirect('admin/phieunhap/danhsach')->with('thongbao','Tạo mới 1 hóa đơn nhập kho thành công');
 
@@ -36,7 +47,7 @@ class PhieunhapController extends Controller
 
     public function get_chitiet($id){
       $nhapkho = PhieuNhap::find($id);
-      $ctnhapkho = CTPhieuNhap::where('id',$id)->get();
+      $ctnhapkho = CTPhieuNhap::where('id_phieunhap',$id)->get();
       $sanpham = SanPham::all();
       return view('backend.admin.phieunhap.List_note',['chitietphieunhap'=>$ctnhapkho,'phieunhap'=>$nhapkho,'sanpham'=>$sanpham]);
     }
@@ -61,48 +72,6 @@ class PhieunhapController extends Controller
       $nhapkho->delete();
 
       return redirect('admin/phieunhap/danhsach')->with('thongbao',"Đã xóa thành công");
-    }
-
-    function get_themCT($id){
-      $sanpham = SanPham::all();
-      $nhapkho = PhieuNhap::find($id);
-
-      return view('backend.admin.phieunhap.Create_detail',['sanpham'=>$sanpham,'phieunhap'=>$nhapkho]);
-    }
-
-    function post_themCT(Request $request, $id){
-      $this->validate($request,
-        [
-          'InputSize' => 'required',
-          'InputMau' => 'required',
-          'InputSL' => 'required',
-        ],
-        [
-          'InputSize.required' => "Chưa nhập size",
-          'InputMau.required' => "Chưa nhập màu",
-          'InputSL.required' => "Chưa nhập số lượng",
-        ]);
-
-      $id_sanpham = $request->InputSP;
-      $size = $request->InputSize;
-      $mau = $request->InputMau;
-      $soluong = $request->InputSL;
-
-      $ctnhapkho = new CTPhieuNhap;
-      $ctnhapkho->id = $id;
-      $ctnhapkho->id_sanpham = $id_sanpham;
-      $ctnhapkho->size = $size;
-      $ctnhapkho->mau = $mau;
-      $ctnhapkho->soluong = $soluong;
-      $ctnhapkho->save();
-
-
-      $sanpham = SanPham::find($id);
-      $sanpham->soluong += $soluong;
-      $sanpham->save();
-
-      return redirect('admin/phieunhap/themct/'.$mank)->with('thongbao',"Thêm thành công");
-
     }
 
 }

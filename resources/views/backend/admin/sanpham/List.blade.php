@@ -33,9 +33,9 @@
                 <tr>
                   <th>Mã sản phẩm</th>
                   <th>Tên sản phẩm</th>
-                  <th>Mã loại sản phẩm</th>
-                  <th>Mã thương hiệu</th>
-                  <th>Mã bảo hành</th>
+                  <th>Tên loại sản phẩm</th>
+                  <th>Tên thương hiệu</th>
+                  <th>Thời hạn bảo hành</th>
                   <th>Chi tiết</th>
                   <th>Sửa</th>  
                   <th>Xóa</th>
@@ -43,16 +43,27 @@
                 </thead>
                 <tbody>
                   @foreach($sanpham as $sp)
-                  <tr class="odd gradeX">
-                    <td>{{$sp->id}}</td>
-                    <td>{{$sp->tensanpham}}</td>
-                    <td>{{$sp->id_loaisanpham}}</td>
-                    <td>{{$sp->id_thuonghieu}}</td>
-                    <td>{{$sp->id_baohanh}}</td>
-                    <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/sanpham/xemct/{{$sp->id}}">Xem chi tiết</a></td>
-                    <td class="center"><i class="fa fa-pencil fa-fw"></i><a href="admin/nhanvien/sua/{{$sp->id}}">Sửa</a></td>
-                    <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/nhanvien/xoa/{{$sp->id}}">Xóa</a></td>
-                  </tr>
+                    
+                    <tr class="odd gradeX">
+                      <td>{{$sp->id}}</td>
+                      <td>{{$sp->tensanpham}}</td>
+                      @foreach($loaisanpham as $lsp) 
+                        @if ($lsp->id == $sp->id_loaisanpham) <td>{{$lsp->tenloaisanpham}}</td> 
+                        @endif
+                      @endforeach
+                      @foreach($thuonghieu as $th) 
+                        @if ($th->id == $sp->id_thuonghieu) <td>{{$th->tenthuonghieu}}</td> 
+                        @endif
+                      @endforeach
+                      @foreach($baohanh as $bh) 
+                        @if ($bh->id == $sp->id_baohanh) <td>{{(strtotime($bh->ngayketthuc) - strtotime($bh->ngaybatdau))/(60*60*24)}}</td> 
+                        @endif
+                      @endforeach
+                      <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/sanpham/xemct/{{$sp->id}}">Xem chi tiết</a></td>
+                      <td class="center"><i class="fa fa-pencil fa-fw"></i><a href="admin/sanpham/sua/{{$sp->id}}">Sửa</a></td>
+                      <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/sanpham/xoa/{{$sp->id}}">Xóa</a></td>
+                    </tr>
+
                   @endforeach
                 </tbody>
               </table>

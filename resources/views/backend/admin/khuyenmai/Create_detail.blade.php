@@ -39,7 +39,7 @@
                 {{session('thongbao')}}
               </div>
             @endif
-            <form class="forms-sample" action="admin/khuyenmai/them" method="POST" enctype="multipart/form-data" style="margin: 1%;">
+            <form class="forms-sample" action="admin/khuyenmai/themct/{{$khuyenmai->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="form-group">
               <label for="InputMaSP">Sản phẩm</label>

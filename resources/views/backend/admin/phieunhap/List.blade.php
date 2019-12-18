@@ -40,7 +40,6 @@
                   <th>ID</th>
                   <th>Tên nhân viên</th>
                   <th>Ngày nhập</th>
-                  <th>Thêm chi tiết</th>
                   <th>Chi tiết nhập kho</th>
                   <th>Sửa</th>
                   <th>Xóa</th>
@@ -51,14 +50,13 @@
                   <tr>
                     <td>{{$pn->id}}</td>
                       <td>
-                        @foreach ($nhanvien as $nv)
-                          @if ($nv->id == $pn->id_nhanvien) 
-                            {{$nv->hoten}}
+                        @foreach ($user as $ad)
+                          @if ($ad->id == $pn->id_nhanvien) 
+                            {{$ad->name}}
                           @endif
                         @endforeach
                       </td>
                     <td>{{$pn->created_at}}</td>
-                    <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/phieunhap/themct/{{$pn->id}}">Thêm chi tiết</a></td>
                     <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/phieunhap/chitiet/{{$pn->id}}">Xem chi tiết</a></td>
                     <td><a href="admin/phieunhap/sua/{{$pn->id}}" class="btn btn-success">Sửa</a></td>
                     <td><a href="admin/phieunhap/xoa/{{$pn->id}}" class="btn btn-danger">Xóa</a></td>

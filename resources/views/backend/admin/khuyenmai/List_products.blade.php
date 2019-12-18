@@ -48,7 +48,7 @@
                   <tr class="odd gradeX"  >
                     <td>{{$ctkm->id}}</td>
                     <td>{{$ctkm->id_sanpham}}</td>
-                    <td>{{$ct->thongtinkhuyenmai}}</td>
+                    <td>{{$ctkm->thongtinkhuyenmai}}</td>
                     <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/khuyenmai/xoact/{{$ctkm->id}}">Xóa</a></td>
                   </tr>
                 @endforeach

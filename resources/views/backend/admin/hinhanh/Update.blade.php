@@ -56,7 +56,7 @@
             <div class="form-group">
               <label for="InputHinh">Hình ảnh</label>
               <p>
-                <img src="img/{{$hinhanh->file_anh}}">
+                <img src="upload/img/product/{{$hinhanh->file_anh}}">
               </p>
               <input type="file" class="form-control" name="InputHinh" >
             </div>

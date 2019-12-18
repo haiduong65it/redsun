@@ -14,33 +14,35 @@ class SanphamController extends Controller
 
   function danhsach(){
       $sanpham = SanPham::all();
-      return view('backend.admin.sanpham.List',['sanpham'=>$sanpham]);
+      $loaisanpham = LoaiSanPham::all();
+      $thuonghieu = ThuongHieu::all();
+      $baohanh = BaoHanh::all();
+      return view('backend.admin.sanpham.List',['sanpham'=>$sanpham, 'loaisanpham'=>$loaisanpham,'thuonghieu'=>$thuonghieu,'baohanh'=>$baohanh]);
   }
 
   function get_them(){
     $loaisanpham = LoaiSanPham::all();
     $thuonghieu = ThuongHieu::all();
     $baohanh = BaoHanh::all();
-    $chitietsanpham = CTSanPham::all();
-    return view('backend.admin.sanpham.Create',['loaisanpham'=>$loaisanpham,'thuonghieu'=>$thuonghieu,'baohanh'=>$baohanh,'chitiettsanpham'=>$chitietsanpham]);
+    return view('backend.admin.sanpham.Create',['loaisanpham'=>$loaisanpham,'thuonghieu'=>$thuonghieu,'baohanh'=>$baohanh]);
   }
 
   function post_them(Request $request){
     $this->validate($request,
       [
         'InputName' => 'required|min:2',
-        'InputDongia' => 'required',
-        'InputSize' => 'required',
-        'InputMau' => 'required',
-        'InputSL' => 'required',
+        // 'InputDongia' => 'required',
+        // 'InputSize' => 'required',
+        // 'InputMau' => 'required',
+        // 'InputSL' => 'required',
       ],
       [
         'InputName.required' => "Chưa nhập tên sản phẩm",
         'InputName.min' => "Tên sản phẩm chứa ít nhất 2 kí tự",
-        'InputDG.required' => "Chưa nhập đơn giá",
-        'InputSize.required' => "Chưa nhập size",
-        'InputMau.required' => "Chưa nhập màu",
-        'InputSL.required' => "Chưa nhập số lượng",  
+        // 'InputDG.required' => "Chưa nhập đơn giá",
+        // 'InputSize.required' => "Chưa nhập size",
+        // 'InputMau.required' => "Chưa nhập màu",
+        // 'InputSL.required' => "Chưa nhập số lượng",  
       ]);        
 
     $sanpham = new SanPham;
@@ -50,15 +52,18 @@ class SanphamController extends Controller
     $sanpham->id_baohanh = $request->BH;
 
     $sanpham->save();
+    foreach ($request->InputSize as $key => $value) {
+      # code...
+      $chitietsanpham = new CTSanpham;
+      $chitietsanpham->size = $value;
+      $chitietsanpham->mau = $request->InputMau[$key];
+      $chitietsanpham->soluong = $request->InputSL[$key];
+      $chitietsanpham->dongia = $request->InputDG[$key];
+      $chitietsanpham->id_sanpham = $sanpham->id;
 
-    $chitietsanpham = new CTSanpham;
-    $chitietsanpham->size = $request->InputSize;
-    $chitietsanpham->mau = $request->InputMau;
-    $chitietsanpham->soluong = $request->InputSL;
-    $chitietsanpham->dongia = $request->InputDG;
-    $chitietsanpham->id_sanpham = $sanpham->id;
-
-    $chitietsanpham->save();
+      $chitietsanpham->save();
+    }
+    
 
     return redirect('admin/sanpham/danhsach')->with('thongbao','Thêm thành công sản phẩm '.$sanpham->tensanpham);
 
@@ -111,8 +116,8 @@ class SanphamController extends Controller
 
   public function get_chitiet($id){
     $sanpham = SanPham::find($id);
-    $chitietsanpham = CTSanPham::where('id',$id)->get();
-    return view('backend.admin.sanpham.Detail',['chitietsanpham'=>$chitietsanpham,'sanpham'=>$sanpham]);
+    $chitietsanpham = CTSanPham::where('id_sanpham',$id)->get();
+    return view('backend.admin.sanpham.ListDetail',['chitietsanpham'=>$chitietsanpham,'sanpham'=>$sanpham]);
   }
 
   public function post_chitiet(Request $request, $id_sanpham){

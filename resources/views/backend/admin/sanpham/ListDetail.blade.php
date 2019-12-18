@@ -1,28 +1,22 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Danh sách hình ảnh')
+@section('title', 'Danh sách sản phẩm')
 
 @section('content')
-	
 	<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapperd">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Hình ảnh
+        Chi tiết sản phẩm
         <small>Danh sách</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Hình ảnh</a></li>
+        <li><a href="#">Chi tiết sản phẩm</a></li>
         <li class="active">Danh sách</li>
       </ol>
     </section>
-    @if (session('thongbao'))
-      <div class="alert alert-success">
-        {{session('thongbao')}}
-      </div>
-    @endif
 
     <!-- Main content -->
     <section class="content">
@@ -30,42 +24,38 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Danh sách hình ảnh</h3>
+              <h3 class="box-title">Danh sách chi tiết sản phẩm {{$sanpham->tensanpham}}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="dsha" class="table table-bordered table-hover">
+              <table id="dssp" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>Mã chi tiết</th>
                   <th>Mã sản phẩm</th>
-                  <th>Hình ảnh</th>
-                  <th>Hiển thị</th>
+                  <th>Size</th>
                   <th>Màu</th>
-                  <th>Sửa</th>
+                  <th>Số lượng</th>
+                  <th>Đơn giá</th>
+                  <th>Sửa</th>  
                   <th>Xóa</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($hinhanh as $ha)
-                  <tr>
-                    <td>{{$ha->id}}</td>
-                    @foreach ($sanpham as $sp)
-                      @if ($sp->id == $ha->id_sanpham) <td>{{$sp->tensanpham}}</td> 
-                      @endif
-                    @endforeach
-                    <td>
-                      <img src="upload/img/product/{{$ha->file_anh}}" height="50px">
-                    </td>
-                    <td>{{$ha->noihienthi}}</td>
-                    <td>{{$ha->mau}}</td>
-                    <td><a href="admin/hinhanh/sua/{{$ha->id}}" class="btn btn-success">Sửa</a></td>
-                    <td><a href="admin/hinhanh/xoa/{{$ha->id}}" class="btn btn-danger">Xóa</a></td>
+                  @foreach($chitietsanpham as $ct)
+                  <tr class="odd gradeX">
+                    <td>{{$ct->id}}</td>
+                    <td>{{$ct->id_sanpham}}</td>
+                    <td>{{$ct->size}}</td>
+                    <td>{{$ct->mau}}</td>
+                    <td>{{$ct->soluong}}</td>
+                    <td>{{$ct->dongia}}</td>
+                    <td class="center"><i class="fa fa-pencil fa-fw"></i><a href="admin/sanpham/suact/{{$ct->id}}">Sửa</a></td>
+                    <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/sanpham/xoact/{{$ct->id}}">Xóa</a></td>
                   </tr>
-                @endforeach
+                  @endforeach
                 </tbody>
               </table>
-           
             </div>
             <!-- /.box-body -->
           </div>
@@ -84,7 +74,7 @@
 @section('script')
 <script type="text/javascript">
   $(document).ready( function () {
-    $('#dsha').DataTable();
+    $('#dssp').DataTable();
 } );
 </script>
 @endsection

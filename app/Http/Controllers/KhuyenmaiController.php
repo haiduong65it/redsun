@@ -85,7 +85,7 @@ class KhuyenmaiController extends Controller
 
     public function get_dssp($id){
       $khuyenmai = KhuyenMai::find($id);
-      $chitietkhuyenmai = CTKhuyenMai::where('id', '=', $id)->get();
+      $chitietkhuyenmai = CTKhuyenMai::where('id_khuyenmai', '=', $id)->get();
       return view('backend.admin.khuyenmai.List_products',['chitietkhuyenmai'=>$chitietkhuyenmai,'khuyenmai'=>$khuyenmai]);
     }
 
@@ -113,7 +113,7 @@ class KhuyenmaiController extends Controller
       if ($d == 0){
         $chitiet = new CTKhuyenMai;
 
-        $chitiet->id = $id;
+        $chitiet->id_khuyenmai = $id;
         $chitiet->id_sanpham = $request->InputMaSP;
         $chitiet->thongtinkhuyenmai = $request->InputInfo;
 

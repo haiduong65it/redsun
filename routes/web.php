@@ -101,7 +101,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 
 		Route::get('xoa/{id}', 'SanphamController@xoa');
 
-		Route::get('xemct/{id_sanpham}','SanphamController@get_chitiet');
+		Route::get('xemct/{id}','SanphamController@get_chitiet');
 		Route::post('xemct/{id}','SanphamController@post_chitiet');
 	});
 
@@ -139,7 +139,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 
 	Route::group(['prefix'=>'phieunhap'], function(){
 
-    	Route::get('danhsach','PhieunhapController@getDanhsach');
+    	Route::get('danhsach','PhieunhapController@danhsach');
 
     	Route::get('chitiet/{id}','PhieunhapController@get_chitiet');
 
@@ -163,17 +163,17 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 		Route::post('duyetdon/{id}','DonhangController@post_duyet');
 
 		Route::get('chitiet/{id}','DonhangController@get_chitiet');
-		Route::get('xoa/{id}','DonhangNVController@get_xoa');
+		Route::get('xoa/{id}','DonhangController@get_xoa');
 	});
 
-	Route::group(['prefix'=>'donhang'], function () {
-    	Route::get('danhsach','DonhangNVController@danhsach');
+	// Route::group(['prefix'=>'donhang'], function () {
+ //    	Route::get('danhsach','DonhangNVController@danhsach');
 
-		Route::get('tinhtrangdonhang/{id}','DonhangNVController@get_capnhatTTDH');
-		Route::post('tinhtrangdonhang/{id}','DonhangNVController@post_capnhatTTDH');
+	// 	Route::get('tinhtrangdonhang/{id}','DonhangNVController@get_capnhatTTDH');
+	// 	Route::post('tinhtrangdonhang/{id}','DonhangNVController@post_capnhatTTDH');
 
-		Route::get('chitiet/{id}','DonhangNVController@get_chitiet');
-	});
+	// 	Route::get('chitiet/{id}','DonhangNVController@get_chitiet');
+	// });
 });
 
 Route::get('/', 'HomeController@home')->name('home');
