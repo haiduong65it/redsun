@@ -165,15 +165,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 		Route::get('chitiet/{id}','DonhangController@get_chitiet');
 		Route::get('xoa/{id}','DonhangController@get_xoa');
 	});
-
-	// Route::group(['prefix'=>'donhang'], function () {
- //    	Route::get('danhsach','DonhangNVController@danhsach');
-
-	// 	Route::get('tinhtrangdonhang/{id}','DonhangNVController@get_capnhatTTDH');
-	// 	Route::post('tinhtrangdonhang/{id}','DonhangNVController@post_capnhatTTDH');
-
-	// 	Route::get('chitiet/{id}','DonhangNVController@get_chitiet');
-	// });
 });
 
 Route::get('/', 'HomeController@home')->name('home');
@@ -184,4 +175,5 @@ Route::post('/register', 'FrontendController@post_Register');
 Route::get('/edit/{id}', 'FrontendController@get_Edit');
 Route::post('/edit/{id}', 'FrontendController@post_Edit');
 Route::get('logout', 'FrontendController@Logout');
-
+Route::get('/cart','FrontendController@get_dathang');
+Route::post('/cart','FrontendController@post_dathang');

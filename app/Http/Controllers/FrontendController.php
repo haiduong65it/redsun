@@ -194,4 +194,8 @@ class FrontendController extends Controller
       Auth::guard('thanhvien')->logout();
       return redirect()->route('home');
     }
+
+    public function get_dathang(){
+      return view('frontend.cart');
+    }
 }

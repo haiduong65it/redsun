@@ -63,8 +63,14 @@
                 <label for="InputBH">Chọn quá trình bảo hành</label>
                   <select  class="form-control"  name="BH" id="BH">
                     @foreach($baohanh as $bh)
-                    <option value="{{$bh->id}}">{{$bh->id}}</option>
+                    <option value="{{$bh->id}}">{{$bh->id}}<td>{{(strtotime($bh->ngayketthuc) - strtotime($bh->ngaybatdau))/(60*60*24)}}</td></option>
                     @endforeach
+                  {{--   @foreach($baohanh as $bh) 
+                        @if ($bh->id == $sp->id_baohanh) <td>{{(strtotime($bh->ngayketthuc) - strtotime($bh->ngaybatdau))/(60*60*24)}}</td> 
+                        <option value="{{$bh->id== $sp->id_baohanh}}">{{$sp->id_baohanh}}</option>
+                        @endif
+                      @endforeach --}}
+
                  </select>
               </div>
             </div>
