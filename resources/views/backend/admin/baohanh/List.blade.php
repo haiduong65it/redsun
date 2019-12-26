@@ -37,7 +37,7 @@
               <table id="dsbh" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>STT</th>
                   <th>Thời hạn bắt đầu</th>
                   <th>Thời hạn kết thúc</th>
                   <th>Sửa</th>
@@ -45,9 +45,10 @@
                 </tr>
                 </thead>
                 <tbody>
+                  <?php $d = 1?>
                 @foreach($baohanh as $bh)
                   <tr class="odd gradeX">
-                    <td>{{$bh->id}}</td>
+                    <td>{{$d++}}</td>
                     <td>{{$bh->ngaybatdau}}</td>
                     <td>{{$bh->ngayketthuc}}</td>
                     <td><a href="admin/baohanh/sua/{{$bh->id}}" class="btn btn-success">Sửa</a></td>

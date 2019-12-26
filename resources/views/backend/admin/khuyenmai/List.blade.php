@@ -37,7 +37,7 @@
               <table id="dskm" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>STT</th>
                   <th>Giảm giá</th>
                   <th>Ngày bắt đầu</th>
                   <th>Ngày kết thúc</th>
@@ -47,9 +47,10 @@
                 </tr>
                 </thead>
                 <tbody>
+                  <?php $d =1?>
                 @foreach($khuyenmai as $km)
                   <tr>
-                    <td>{{$km->id}}</td>
+                    <td>{{$d++}}</td>
                     <td>{{$km->giamgia}}</td>
                     <td>{{$km->ngaybatdau}}</td>
                     <td>{{$km->ngayketthuc}}</td>

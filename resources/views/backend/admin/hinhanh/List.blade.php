@@ -37,7 +37,7 @@
               <table id="dsha" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>STT</th>
                   <th>Mã sản phẩm</th>
                   <th>Hình ảnh</th>
                   <th>Hiển thị</th>
@@ -47,9 +47,10 @@
                 </tr>
                 </thead>
                 <tbody>
+                  <?php $d =1 ?>
                 @foreach($hinhanh as $ha)
                   <tr>
-                    <td>{{$ha->id}}</td>
+                     <td>{{$d++}}</td>
                     @foreach ($sanpham as $sp)
                       @if ($sp->id == $ha->id_sanpham) <td>{{$sp->tensanpham}}</td> 
                       @endif

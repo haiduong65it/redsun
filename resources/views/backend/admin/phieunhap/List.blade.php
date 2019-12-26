@@ -37,7 +37,7 @@
               <table id="dspn" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>STT</th>
                   <th>Tên nhân viên</th>
                   <th>Ngày nhập</th>
                   <th>Chi tiết nhập kho</th>
@@ -46,9 +46,10 @@
                 </tr>
                 </thead>
                 <tbody>
+                  <?php $d =1?>
                 @foreach($phieunhap as $pn)
                   <tr>
-                    <td>{{$pn->id}}</td>
+                     <td>{{$d++}}</td>
                       <td>
                         @foreach ($user as $ad)
                           @if ($ad->id == $pn->id_nhanvien) 

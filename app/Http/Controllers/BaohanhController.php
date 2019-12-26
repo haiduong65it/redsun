@@ -71,7 +71,7 @@ class BaohanhController extends Controller
       
     }
 
-    function get_xoa($id){
+    function xoa($id){
       $baohanh = BaoHanh::find($id);
       $baohanh->delete();
 

@@ -47,7 +47,7 @@
                 <label for="InputLSP">Chọn loại sản phẩm</label>
                   <select  class="form-control"  name="LSP" id="LSP">
                     @foreach($loaisanpham as $lsp)
-                    <option value="{{$lsp->id}}">{{$lsp->id." - ".$lsp->tenloaisanpham}}</option>
+                    <option value="{{$lsp->id}}">{{$lsp->tenloaisanpham}}</option>
                     @endforeach
                 </select>
               </div>
@@ -55,7 +55,7 @@
                 <label for="InputTH">Chọn thương hiệu</label>
                 <select  class="form-control"  name="TH" id="TH">
                   @foreach($thuonghieu as $th)
-                  <option value="{{$th->id}}">{{$th->id." - ".$th->tenthuonghieu}}</option>
+                  <option value="{{$th->id}}">{{$th->tenthuonghieu}}</option>
                   @endforeach
                 </select>  
               </div>
@@ -63,13 +63,9 @@
                 <label for="InputBH">Chọn quá trình bảo hành</label>
                   <select  class="form-control"  name="BH" id="BH">
                     @foreach($baohanh as $bh)
-                    <option value="{{$bh->id}}">{{$bh->id}}<td>{{(strtotime($bh->ngayketthuc) - strtotime($bh->ngaybatdau))/(60*60*24)}}</td></option>
+                    <option value="{{$bh->id}}">{{(strtotime($bh->ngayketthuc) - strtotime($bh->ngaybatdau))/(60 * 60 * 24)}} ngày</option>
                     @endforeach
-                  {{--   @foreach($baohanh as $bh) 
-                        @if ($bh->id == $sp->id_baohanh) <td>{{(strtotime($bh->ngayketthuc) - strtotime($bh->ngaybatdau))/(60*60*24)}}</td> 
-                        <option value="{{$bh->id== $sp->id_baohanh}}">{{$sp->id_baohanh}}</option>
-                        @endif
-                      @endforeach --}}
+                  
 
                  </select>
               </div>

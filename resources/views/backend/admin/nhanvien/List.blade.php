@@ -37,7 +37,7 @@
               <table id="dsnv" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>STT</th>
                   <th>Họ Tên</th>
                   <th>Ngày Sinh</th>
                   <th>Giới Tính</th>
@@ -50,9 +50,10 @@
                 </tr>
                 </thead>
                 <tbody>
+                  <?php $d = 1?>
                 @foreach($nhanvien as $nv)
                   <tr>
-                    <td>{{$nv->id}}</td>
+                    <td>{{$d++}}</td>
                     <td>{{$nv->hoten}}</td>
                     <td>{{date('d/m/Y', strtotime($nv->ngaysinh))}}</td>
                     <td>@if ($nv->gioitinh == 'Male') {{'Nam'}} @else {{'Nữ'}} @endif</td>

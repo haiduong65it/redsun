@@ -37,16 +37,17 @@
               <table id="dsth" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>STT</th>
                   <th>Tên thuong hiệu</th>
                   <th>Sửa</th>
                   <th>Xóa</th>
                 </tr>
                 </thead>
                 <tbody>
+                  <?php $d = 1?>
                 @foreach($thuonghieu as $th)
                   <tr>
-                    <td>{{$th->id}}</td>
+                    <td>{{$d++}}</td>
                     <td>{{$th->tenthuonghieu}}</td>
                     <td><a href="admin/thuonghieu/sua/{{$th->id}}" class="btn btn-success">Sửa</a></td>
                     <td><a href="admin/thuonghieu/xoa/{{$th->id}}" class="btn btn-danger">Xóa</a></td>

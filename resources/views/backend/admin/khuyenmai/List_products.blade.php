@@ -37,16 +37,17 @@
               <table id="dsctkm" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID chi tiết khuyến mãi</th>
+                  <th>STT</th>
                   <th>Mã sản phẩm</th>
                   <th>Thông tin khuyến mãi</th>
                   <th><i class="fa fa-plus-circle fa-fw"></i><a href="admin/khuyenmai/themct/{{$khuyenmai->id}}">Thêm</a></th>  
                 </tr>
                 </thead>
                 <tbody>
+                  <?php $d = 1?>
                 @foreach($chitietkhuyenmai as $ctkm)
                   <tr class="odd gradeX"  >
-                    <td>{{$ctkm->id}}</td>
+                    <td>{{$d++}}</td>
                     <td>{{$ctkm->id_sanpham}}</td>
                     <td>{{$ctkm->thongtinkhuyenmai}}</td>
                     <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/khuyenmai/xoact/{{$ctkm->id}}">Xóa</a></td>

@@ -35,7 +35,7 @@
                   <th>Tên sản phẩm</th>
                   <th>Tên loại sản phẩm</th>
                   <th>Tên thương hiệu</th>
-                  <th>Thời hạn bảo hành</th>
+                  <th>Thời hạn bảo hành (Ngày)</th>
                   <th>Chi tiết</th>
                   <th>Sửa</th>  
                   <th>Xóa</th>
@@ -56,7 +56,7 @@
                         @endif
                       @endforeach
                       @foreach($baohanh as $bh) 
-                        @if ($bh->id == $sp->id_baohanh) <td>{{(strtotime($bh->ngayketthuc) - strtotime($bh->ngaybatdau))/(60*60*24)}}</td> 
+                        @if ($bh->id == $sp->id_baohanh) <td>{{(strtotime($bh->ngayketthuc) - strtotime($bh->ngaybatdau))/(60 * 60 * 24)}}</td> 
                         @endif
                       @endforeach
                       <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/sanpham/xemct/{{$sp->id}}">Xem chi tiết</a></td>

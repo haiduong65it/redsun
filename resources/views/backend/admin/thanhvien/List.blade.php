@@ -37,7 +37,7 @@
               <table id="table" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>STT</th>
                   <th>Họ Tên</th>
                   <th>Ngày Sinh</th>
                   <th>Giới Tính</th>
@@ -51,9 +51,10 @@
                 </tr>
                 </thead>
                 <tbody>
+                  <?php $d = 1?>
                 @foreach($thanhvien as $tv)
                   <tr>
-                    <td>{{$tv->id}}</td>
+                    <td>{{$d++}}</td>
                     <td>{{$tv->hoten}}</td>
                     <td>{{date('d/m/Y', strtotime($tv->ngaysinh))}}</td>
                     <td>@if ($tv->gioitinh == 'Male') {{'Nam'}} @else {{'Nữ'}} @endif</td>

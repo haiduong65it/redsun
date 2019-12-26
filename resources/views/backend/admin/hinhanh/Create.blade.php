@@ -58,7 +58,7 @@
                 <input type="text" class="form-control" name="InputHienthi">
               </div>
               <div class="form-group">
-                <label for="InputMau">Mau</label>
+                <label for="InputMau">Màu</label>
                 <input type="text" class="form-control" name="InputMau">
               </div>
               <button type="submit" class="btn btn-success mr-2">Thêm</button>

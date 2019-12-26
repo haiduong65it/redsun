@@ -37,16 +37,17 @@
               <table id="dslsp" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Tên sản phẩm</th>
+                  <th>STT</th>
+                  <th>Tên loại sản phẩm</th>
                   <th>Sửa</th>
                   <th>Xóa</th>
                 </tr>
                 </thead>
                 <tbody>
+                  <?php $d = 1?>
                 @foreach($loaisanpham as $lsp)
                   <tr>
-                    <td>{{$lsp->id}}</td>
+                    <td>{{$d++}}</td>
                     <td>{{$lsp->tenloaisanpham}}</td>
                     <td><a href="admin/loaisanpham/sua/{{$lsp->id}}" class="btn btn-success">Sửa</a></td>
                     <td><a href="admin/loaisanpham/xoa/{{$lsp->id}}" class="btn btn-danger">Xóa</a></td>
