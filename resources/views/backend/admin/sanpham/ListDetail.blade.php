@@ -37,6 +37,8 @@
                   <th>Màu</th>
                   <th>Số lượng</th>
                   <th>Đơn giá</th> 
+                  <th>Sửa</th>
+                  <th>Xóa</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,7 +49,9 @@
                     <td>{{$ct->size}}</td>
                     <td>{{$ct->mau}}</td>
                     <td>{{$ct->soluong}}</td>
-                    <td>{{$ct->dongia}}</td>                
+                    <td>{{$ct->dongia}}</td>   
+                    <td class="center"><i class="fa fa-pencil fa-fw"></i><a href="admin/sanpham/suact/{{$ct->id}}">Sửa</a></td>
+                    <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/sanpham/xoact/{{$ct->id}}">Xóa</a></td>            
                   </tr>
                   @endforeach
                 </tbody>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SanPham;
+use App\HinhAnh;
+use App\CTSanPham;
 
 class HomeController extends Controller
 {
@@ -33,6 +36,9 @@ class HomeController extends Controller
 
     public function home()
     {
-        return view('frontend.dashboard');
+        $sanpham = SanPham::all();
+        $hinhanh = HinhAnh::all();
+        $ctsanpham = CTSanPham::all();
+        return view('frontend.dashboard', ['sanpham'=>$sanpham, 'hinhanh'=>$hinhanh,'chitietsanpham'=>$ctsanpham]);
     }
 }

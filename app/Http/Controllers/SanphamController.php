@@ -120,8 +120,14 @@ class SanphamController extends Controller
     return view('backend.admin.sanpham.ListDetail',['chitietsanpham'=>$chitietsanpham,'sanpham'=>$sanpham]);
   }
 
-  public function post_chitiet(Request $request, $id_sanpham){
-    $chitietsanpham = CTSanPham::find($id_sanpham);
+  public function get_suact($id){
+    $ctsanpham = CTSanPham::find($id);
+    $sanpham = SanPham::find($ctsanpham->id_sanpham);
+    return view('backend.admin.sanpham.Detail',['chitietsanpham'=>$ctsanpham, 'sanpham'=>$sanpham]);
+  }
+
+  public function post_suact(Request $request, $id){
+    $chitietsanpham = CTSanPham::find($id);
     $this->validate($request,
       [
         'InputDG' => 'required',
@@ -145,7 +151,14 @@ class SanphamController extends Controller
 
     return redirect('admin/sanpham/danhsach')->with('thongbao',"Sửa thành công chi tiết sản phẩm ".$chitietsanpham->id_sanpham);
   }
+ 
+ public function xoact($id){
+    $ctsanpham = CTSanPham::find($id);
+    $id_sanpham = $ctsanpham->id_sanpham;
+    $ctsanpham->delete();
 
+    return redirect('admin/sanpham/xemct/'.$id_sanpham)->with('thongbao', "Xóa thành công");
+ }
     
   
 }

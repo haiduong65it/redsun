@@ -98,25 +98,3 @@
   <!-- /.content-wrapper -->
 @endsection
 
-@section('script')
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $("#changePass").change(function(){
-        if ($(this).is(":checked")){
-          $(".password").removeAttr('disabled');
-        }
-        else {
-          $(".password").attr('disabled','')
-        }
-      });
-      $("#changeID").change(function(){
-        if ($(this).is(":checked")){
-          $(".id").removeAttr('disabled');
-        }
-        else {
-          $(".id").attr('disabled','')
-        }
-      });
-    });
-  </script>
-@endsection

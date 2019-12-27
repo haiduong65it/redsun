@@ -15,7 +15,7 @@ class CreatePhieunhapTable extends Migration
     {
         Schema::create('phieunhap', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_nhanvien')->unsigned();
+            $table->bigInteger('id_users')->unsigned();
             $table->timestamps();
         });
     }

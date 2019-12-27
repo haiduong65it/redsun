@@ -23,7 +23,7 @@
           {{session('thongbao')}}
         </div>
       @endif
-      <form class="forms-sample" action="admin/sanpham/xemct/{{$chitietsanpham->id}}" method="POST">
+      <form class="forms-sample" action="admin/sanpham/suact/{{$chitietsanpham->id}}" method="POST">
         <input type="hidden" name="_token" value="{{csrf_token()}}">
         <div class="form-group">
           <label for="InputSize">Size</label>
@@ -36,7 +36,7 @@
         </div>
         <div class="form-group">
           <label for="InputSL">Số lượng</label>
-          <input type="number" class="form-control" name="InputMau" placeholder="Nhập màu" 
+          <input type="number" class="form-control" name="InputSL" placeholder="Nhập số lượng" 
           value="{{$chitietsanpham->soluong}}">
         </div>
         <div class="form-group">

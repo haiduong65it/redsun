@@ -102,7 +102,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 		Route::get('xoa/{id}', 'SanphamController@xoa');
 
 		Route::get('xemct/{id}','SanphamController@get_chitiet');
-		Route::post('xemct/{id}','SanphamController@post_chitiet');
+
+		Route::get('suact/{id}','SanphamController@get_suact');
+		Route::post('suact/{id}','SanphamController@post_suact');
+		Route::post('xoact/{id}','SanphamController@xoact');
 
 		
 	});
@@ -155,6 +158,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 
 		Route::get('themct/{id}','PhieunhapController@get_themCT');
 		Route::post('themct/{id}','PhieunhapController@post_themCT');
+		Route::get('suact/{id}','PhieunhapController@get_suact');
+		Route::post('suact/{id}','PhieunhapController@post_suact');
+		Route::post('xoact/{id}','PhieunhapController@xoact');
 	});
 
 	Route::group(['prefix'=>'donhang'], function () {

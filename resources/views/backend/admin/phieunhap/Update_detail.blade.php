@@ -9,12 +9,12 @@
     <section class="content-header">
       <h1>
        Chu tiết nhập kho
-        <small>Thêm</small>
+        <small>Sửa</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Chi tiết nhập kho</a></li>
-        <li class="active">Thêm</li>
+        <li class="active">Sửa</li>
       </ol>
     </section>
 
@@ -24,7 +24,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3>Thêm mới chi tiết nhập kho</h3>
+              <h3>Sửa chi tiết nhập kho</h3>
             </div>
             @if ($errors->any())
               <div class="alert alert-danger">
@@ -39,28 +39,21 @@
                 {{session('thongbao')}}
               </div>
             @endif
-            <form class="forms-sample" action="admin/phieunhap/themct/{{$phieunhap->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
-            <div class="form-group">
-              <label for="InputSP">Sản Phẩm</label>
-              <select  class="form-control"  name="InputSP" id="InputSP">
-                @foreach($sanpham as $sp)
-                  <option value="{{$sp->id}}">{{$sp->tensanpham}}</option>
-                @endforeach
-              </select>
-            </div>
+            <form class="forms-sample" action="admin/phieunhap/suact/{{$chitietphieunhap->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
+              @csrf
             <div class="form-group">
               <label for="InputSize">Size</label>
-               <input type="number" class="form-control" name="InputSIze">
+               <input type="number" class="form-control" name="InputSize" value="{{$chitietphieunhap->size}}">
             </div>
             <div class="form-group">
               <label for="InputMau">Màu</label>
-               <input type="text" class="form-control" name="InputMau">
+               <input type="text" class="form-control" name="InputMau" value="{{$chitietphieunhap->mau}}">
             </div>
             <div class="form-group">
               <label for="InputSL">Số lượng</label>
-               <input type="number" class="form-control" name="InputSL">
+               <input type="number" class="form-control" name="InputSL" value="{{$chitietphieunhap->soluong}}">
             </div>
-              <button type="submit" class="btn btn-success mr-2">Thêm</button>
+              <button type="submit" class="btn btn-success mr-2">Sửa</button>
               <button type="reset" class="btn btn-light">Làm mới</button>
             </form>
           </div>

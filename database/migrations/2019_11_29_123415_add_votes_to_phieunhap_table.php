@@ -14,7 +14,7 @@ class AddVotesToPhieunhapTable extends Migration
     public function up()
     {
         Schema::table('phieunhap', function (Blueprint $table) {
-            $table->foreign('id_nhanvien')->references('id')->on('nhan_viens')->onDelete('cascade');
+            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

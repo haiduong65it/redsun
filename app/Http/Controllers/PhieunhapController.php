@@ -26,7 +26,7 @@ class PhieunhapController extends Controller
 
     function post_them(Request $request){
       $nhapkho = new PhieuNhap;
-      $nhapkho->id_nhanvien = Auth::user()->id;
+      $nhapkho->id_users = Auth::user()->id;
       $nhapkho->save();
 
       foreach ($request->InputMaSP as $key => $value) {
@@ -74,5 +74,28 @@ class PhieunhapController extends Controller
       return redirect('admin/phieunhap/danhsach')->with('thongbao',"Đã xóa thành công");
     }
 
+    function get_suact($id){
+      $ctnhapkho = CTPhieuNhap::find($id);
+      return view('backend.admin.phieunhap.Update_detail',['chitietphieunhap'=>$ctnhapkho]);
+    }
+
+    function post_suact(Request $request, $id){
+      $ctnhapkho = CTPhieuNhap::find($id);
+      $ctnhapkho->size = $request->InputSize;
+      $ctnhapkho->mau = $request->InputMau;
+      $ctnhapkho->soluong = $request->InputSL;
+      
+
+      $ctnhapkho->save();
+
+      return redirect('admin/phieunhap/chitiet/'.$ctnhapkho->id_phieunhap)->with('thongbao', "Sửa chi tiết thành công");
+    }
+    function xoact($id){
+      $ctnhapkho = CTPhieuNhap::find($id);
+      $id_phieunhap = $ctnhapkho->id_phieunhap;
+      $ctnhapkho->delete();
+
+      return redirect('admin/phieunhap/chitiet/'.$id_phieunhap)->with('thongbao', "Xóa chi tiết thành công");
+}
 }
 

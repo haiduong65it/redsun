@@ -38,7 +38,7 @@
                 <thead>
                 <tr>
                   <th>STT</th>
-                  <th>Tên nhân viên</th>
+                  <th>Tên</th>
                   <th>Ngày nhập</th>
                   <th>Chi tiết nhập kho</th>
                   <th>Sửa</th>
@@ -52,7 +52,7 @@
                      <td>{{$d++}}</td>
                       <td>
                         @foreach ($user as $ad)
-                          @if ($ad->id == $pn->id_nhanvien) 
+                          @if ($ad->id == $pn->id_users) 
                             {{$ad->name}}
                           @endif
                         @endforeach

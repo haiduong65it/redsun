@@ -122,53 +122,12 @@ class FrontendController extends Controller
 
     public function post_Edit(Request $request,$id)
     {
-      $user = User::find($id);
-      $validator_name = Validator::make($request->all(), [
-        'Name' => 'required|min:5',
-        ],
-        [
-          'Name.required' => "Chưa nhập họ tên",
-          'Name.min' => "Họ tên phải có ít nhất 5 kí tự",
-        ]);
-        if ($validator_name->fails()) 
-        {
-          return back()->withErrors($validator_name)->withInput();
-        }
-      $user->name = $request->Name;
-      if($request->changeEmail == "on"){
-        $validator_email = Validator::make($request->all(), [
-          'Email' => 'unique:users,email|required|min:5|max:50',
-        ],
-        [
-          'Email.unique' => "tên đăng nhập này đã tồn tại",
-          'Email.required' => "Chưa nhập tên đăng nhập",
-          'Email.min' => "tên đăng nhập phải có ít nhất 5 kí tự",
-          'Email.max' => "tên đăng nhập chứa tối đa 50 kí tự",
-        ]);
-        if ($validator_email->fails()) 
-        {
-          return back()->withErrors($validator_email)->withInput();
-        }
-        $user->email = $request->Email;
-      }
-      if($request->changePass == "on"){
-        $validator_pass = Validator::make($request->all(), [
-          'Password' => 'required|min:5',
-          'Re-Password' => 'required|same:Password'
-        ],
-        [
-          'Password.required' => "Chưa nhập mật khẩu",
-          'Password.min' => "Mật khẩu phải có ít nhất 5 kí tự",
-          'Re-Password.required' => "Chưa nhập lại mật khẩu",
-          'Re-Password.same' => "Mật khẩu nhập lại chưa khớp",
-        ]);
-        if ($validator_pass->fails()) 
-        {
-          return back()->withErrors($validator_pass)->withInput();
-        }
-        $user->password = bcrypt($request->InputPassword);
-      }
-      $avatar = $user->avatar;
+      $thanhvien = ThanhVien::find($id);
+      $thanhvien->hoten = $request->InputName;
+      $thanhvien->email = $request->InputMail;
+      $thanhvien->password = bcrypt($request->InputPassword);
+
+      $avatar = $thanhvien->avatar;
       if ($request->hasfile('Avatar')){
         $file = $request->file('Avatar');
   			$name = $file->getClientOriginalName();
@@ -181,11 +140,15 @@ class FrontendController extends Controller
   			$avatar = $Hinh;
   			}
 
-      $user->avatar = $avatar;
+      $thanhvien->avatar = $avatar;
+      $thanhvien->ngaysinh = $request->InputBirth;
+      $thanhvien->gioitinh = $request->InputSex;
+      $thanhvien->sdt = $request->InputTel;
+      $thanhvien->diachi = $request->InputAdd;
 
-      $user->save();
+      $thanhvien->save();
 
-      return redirect('admin/dashboard');
+      return redirect('edit/'.$thanhvien->id)->with('thongbao', "Sửa thành công");
       
     }
 

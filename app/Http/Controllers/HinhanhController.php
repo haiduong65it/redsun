@@ -94,7 +94,7 @@ class HinhanhController extends Controller
      
         $file->move('upload/img/product/', $Hinh);
       }
-      $hinhanh->ghichu = $request->InputHienthi;
+      $hinhanh->noihienthi = $request->InputHienthi;
 
       $hinhanh->save();
 

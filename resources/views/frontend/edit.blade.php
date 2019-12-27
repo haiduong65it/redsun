@@ -45,13 +45,13 @@
 		    @endif
 			<div>
 				<h2>Account</h2>	
-				<form class="row login_form" action="register" method="POST" id="contactForm">
+				<form class="row login_form" action="edit/{{$thanhvien->id}}" method="POST" id="contactForm">
 					<input type="hidden" name="_token" value="{{csrf_token()}}">
 					<fieldset class="col">
 						<legend>Thông tin đăng nhập</legend>
 						<label class="col-md-12" style="text-align: left;"><span style="color: red">*</span> Email đăng nhập</label>
 						<div class="col-md-12 form-group">
-							<input type="email" class="form-control" id="InputMail" name="InputMail" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+							<input type="email" class="form-control" id="InputMail" name="InputMail" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" value="{{$thanhvien->email}}">
 						</div>
 						<label class="col-md-12" style="text-align: left;"><span style="color: red">*</span> Mật khẩu</label>
 						<div class="col-md-12 form-group">
@@ -66,35 +66,36 @@
 						<legend>Thông tin cá nhân</legend>
 						<label class="col-md-12" style="text-align: left;"><span style="color: red">*</span> Họ tên</label>
 						<div class="col-md-12 form-group">
-						  <input type="text" class="form-control" name="InputName" placeholder="Nhập Họ và Tên">
+						  <input type="text" class="form-control" name="InputName" placeholder="Nhập Họ và Tên" value="{{$thanhvien->hoten}}">
 						</div>
 						<label class="col-md-12" style="text-align: left;"><span style="color: red">*</span> Ngày sinh</label>
 						<div class="col-md-12 form-group">
-						  <input type="date" class="form-control" name="InputBirth">
+						  <input type="date" class="form-control" name="InputBirth" value="{{$thanhvien->ngaysinh}}">
 						</div>
 						<label class="col-md-12" style="text-align: left;"><span style="color: red">*</span> Giới tính</label>
 						<div class="col-md-12 form-group">
 						  <select name="InputSex" class="form-control">
-						    <option value="Nam">Nam</option>
-						    <option value="Nữ">Nữ</option>
-						    <option value="Khác">Khác</option>
+						    <option value="Male" @if ($thanhvien->gioitinh == 'Male') {{"selected='selected'"}} @endif>Nam</option>
+						    <option value="Female" @if ($thanhvien->gioitinh == 'Female') {{"selected='selected'"}} @endif>Nữ</option>
+						    <option value="other" @if ($thanhvien->gioitinh == 'other') {{"selected='selected'"}} @endif>Khác</option>
 						  </select>
 						</div>
 						<label class="col-md-12" style="text-align: left;"><span style="color: red">*</span> Số điện thoại</label>
 						<div class="col-md-12 form-group">
-						  <input type="text" class="form-control" name="InputTel" placeholder="Nhập số điện thoại">
+						  <input type="text" class="form-control" name="InputTel" placeholder="Nhập số điện thoại" value="{{$thanhvien->sdt}}">
 						</div>
 						<label class="col-md-12" style="text-align: left;"><span style="color: red">*</span> Địa chỉ</label>
 						<div class="col-md-12 form-group">
-						  <input type="text" class="form-control" name="InputAdd" placeholder="Nhập địa chỉ">
+						  <input type="text" class="form-control" name="InputAdd" placeholder="Nhập địa chỉ" value="{{$thanhvien->diachi}}">
 						</div>
 						<label class="col-md-12" style="text-align: left;">Avatar</label>
+						<img src="upload/img/avatar/thanhvien/{{$thanhvien->avatar}}" height="100px">
 						<div class="col-md-12 form-group">
 			                <input type="file" class="form-control" name="Avatar">
 			            </div>
 					</fieldset>
 					<div class="col-md-12 form-group">
-						<button type="submit" class="primary-btn">Register</button>
+						<button type="submit" class="primary-btn">Sửa</button>
 					</div>
 				</form>
 			</div>

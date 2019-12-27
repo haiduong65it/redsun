@@ -28,7 +28,7 @@ class KhuyenmaiController extends Controller
           'InputLdate' => 'required|after:InputFdate',          
         ],
         [
-          'InputGG.required' => "CHưa nhập số giảm giá" ,
+          'InputGG.required' => "Chưa nhập số giảm giá" ,
           'InputFdate.required' => "Chưa chọn ngày bắt đầu",
           'InputFdate.after' => "Ngày áp dụng phải chọn sau ngày hôm nay",
           'InputLdate.required' => "Chưa chọn ngày kết thúc",
