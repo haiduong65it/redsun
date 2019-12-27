@@ -31,18 +31,18 @@ class SanphamController extends Controller
     $this->validate($request,
       [
         'InputName' => 'required|min:2',
-        // 'InputDongia' => 'required',
-        // 'InputSize' => 'required',
-        // 'InputMau' => 'required',
-        // 'InputSL' => 'required',
+        'InputDongia' => 'required',
+        'InputSize' => 'required',
+        'InputMau' => 'required',
+        'InputSL' => 'required',
       ],
       [
         'InputName.required' => "Chưa nhập tên sản phẩm",
         'InputName.min' => "Tên sản phẩm chứa ít nhất 2 kí tự",
-        // 'InputDG.required' => "Chưa nhập đơn giá",
-        // 'InputSize.required' => "Chưa nhập size",
-        // 'InputMau.required' => "Chưa nhập màu",
-        // 'InputSL.required' => "Chưa nhập số lượng",  
+        'InputDG.required' => "Chưa nhập đơn giá",
+        'InputSize.required' => "Chưa nhập size",
+        'InputMau.required' => "Chưa nhập màu",
+        'InputSL.required' => "Chưa nhập số lượng",  
       ]);        
 
     $sanpham = new SanPham;
@@ -103,7 +103,7 @@ class SanphamController extends Controller
     
   }
 
-  public function get_xoa($id){
+  public function xoa($id){
     $sanpham = SanPham::find($id);
     $id_sanpham = $chitietsanpham->id_sanpham;
     $sanpham->delete();
@@ -141,8 +141,11 @@ class SanphamController extends Controller
     $chitietsanpham->mau = $request->InputMau;
     $chitietsanpham->soluong = $request->InputSL;
 
-    $ctsanpham->save();
+    $chitietsanpham->save();
 
     return redirect('admin/sanpham/danhsach')->with('thongbao',"Sửa thành công chi tiết sản phẩm ".$chitietsanpham->id_sanpham);
   }
+
+    
+  
 }

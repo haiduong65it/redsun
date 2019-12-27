@@ -49,7 +49,7 @@
                   @if ($sanpham->id_loaisanpham == $lsp->id)
                     {{"selected"}}
                   @endif
-                  value="{{$lsp->id}}">{{$lsp->id." - ".$lsp->tenloaisanpham}}
+                  value="{{$lsp->id}}">{{$lsp->tenloaisanpham}}
                 </option>
                 @endforeach
               </select>
@@ -62,80 +62,39 @@
                   @if ($sanpham->id_thuonghieu == $th->id)
                     {{"selected"}}
                   @endif
-                  value="{{$th->id}}">{{$th->id." - ".$th->tenthuonghieu}}
+                  value="{{$th->id}}">{{$th->tenthuonghieu}}
                 </option>
                 @endforeach
               </select>
             </div>
-            <div class="form-group">
-              <label for="InputBH">Chọn quá trình bảo hành</label>
-              <select  class="form-control"  name="BH" id="BH">
-                @foreach($baohanh as $bh)
-                  <option 
-                    @if ($sanpham->id_baohanh == $bh->id)
-                      {{"selected"}}
-                    @endif
-                  value="{{$bh->id}}">{{$bh->id." - ".$bh->thoihan." tháng"}}</option>
-                @endforeach
-              </select>
-            </div>
+           <div class="form-group">
+                <label for="InputBH">Chọn quá trình bảo hành</label>
+                  <select  class="form-control"  name="BH" id="BH">
+                    @foreach($baohanh as $bh)
+                    <option value="{{$bh->id}}">{{(strtotime($bh->ngayketthuc) - strtotime($bh->ngaybatdau))/(60 * 60 * 24)}} ngày</option>
+                    @endforeach
+                 </select>
+              </div>
             <div class="form-group">
               <label for="InputDG">Đơn giá</label>
               <input type="number" class="form-control" name="InputDG" placeholder="Nhập đơn giá" value="{{$sanpham->dongia}}">
             </div>
-              <button type="submit" class="btn btn-success mr-2">Thay đổi</button>
-              <button type="reset" class="btn btn-light">Làm mới</button>
+              
             </form>
           </div>
           <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-6">
-          <div class="box">
-            <div class="box-header">
-              <h3>Thông tin nhân viên</h3>
-            </div>
-            <div class="box-body">
-              <form class="forms-sample">
-                <div class="form-group">
-                  <label for="InputName">Họ Tên</label>
-                  <input type="text" class="form-control" name="InputName" placeholder="Nhập Họ và Tên" value="{{$nhanvien->hoten}}" disabled="">
-                </div>
-                <div class="form-group">
-                  <label for="InputBirth">Ngày sinh</label>
-                  <input type="date" class="form-control" name="InputBirth" placeholder="Chọn ngày sinh" value="{{$nhanvien->ngaysinh}}" disabled="">
-                </div>
-                <div class="form-group">
-                  <label for="InputSex">Giới tính</label><br>
-                  <select name="InputSex" disabled="">
-                    <option value="Male" @if ($nhanvien->gioitinh == 'Male') {{"selected='selected'"}} @endif>Nam</option>
-                    <option value="Female" @if ($nhanvien->gioitinh == 'Female') {{"selected='selected'"}} @endif>Nữ</option>
-                    <option value="other" @if ($nhanvien->gioitinh == 'other') {{"selected='selected'"}} @endif>Khác</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="InputTel">Số điện thoại</label>
-                  <input type="text" class="form-control" name="InputTel" placeholder="Nhập số điện thoại" value="{{$nhanvien->sdt}}" disabled="">
-                </div>
-                <div class="form-group">
-                  <label for="InputAddress">Địa chỉ</label>
-                  <input type="text" class="form-control" name="InputAddress" placeholder="Nhập địa chỉ" value="{{$nhanvien->diachi}}" disabled="">
-                </div>
-                <div class="form-group">
-                  <label for="InputAvatar">Avatar</label>
-                  <img src="upload/img/avatar/nhanvien/{{$nhanvien->avatar}}" height="100px">
-                </div>
-              </form>
-            </div>
+        </div>        
+          <div class="button" style="width: 90%;"> 
+            <button type="submit" class="btn btn-success mr-2 col-lg-6" style="margin: 5px 20px;">Thêm</button>
+            <button type="reset" class="btn btn-light col-lg-6"  style="margin: 5px 20px;">Làm mới</button>
           </div>
-        </div>
+        <!-- /.col -->
       </div>
       <!-- /.row -->
-        
-            </div>
-    </section>
+   </section>
+</div>
+    
     <!-- /.content -->
-  </div>
   <!-- /.content-wrapper -->
 @endsection
 

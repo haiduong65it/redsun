@@ -67,7 +67,7 @@ class PhieunhapController extends Controller
       
     }
 
-    function get_xoa($id){
+    function xoa($id){
       $nhapkho = PhieuNhap::find($id);
       $nhapkho->delete();
 

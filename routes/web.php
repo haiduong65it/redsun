@@ -103,6 +103,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 
 		Route::get('xemct/{id}','SanphamController@get_chitiet');
 		Route::post('xemct/{id}','SanphamController@post_chitiet');
+
+		
 	});
 
 	Route::group(['prefix'=>'hinhanh'], function(){
@@ -149,7 +151,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 		Route::get('sua/{id}','PhieunhapController@get_sua');
 		Route::post('sua/{id}','PhieunhapController@post_sua');
 
-		Route::get('xoa/{id}','PhieunhapController@get_xoa');
+		Route::get('xoa/{id}','PhieunhapController@xoa');
 
 		Route::get('themct/{id}','PhieunhapController@get_themCT');
 		Route::post('themct/{id}','PhieunhapController@post_themCT');

@@ -77,7 +77,7 @@ class KhuyenmaiController extends Controller
       
     }
 
-    public function get_xoa($id){
+    public function xoa($id){
       $khuyenmai = KhuyenMai::find($id);
       $khuyenmai->delete();
       return redirect('admin/khuyenmai/danhsach')->with('thongbao',"Đã xóa thành công");
