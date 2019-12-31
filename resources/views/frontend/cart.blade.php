@@ -1,3 +1,4 @@
+  
 @extends('layouts.frontend.index')
 
 @section('title', 'Cart')

@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\ThanhVien;
+use App\ThuongHieu;
+use App\SanPham;
+use App\CTSanPham;
+use App\HinhAnh;
+use Session;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -158,7 +164,42 @@ class FrontendController extends Controller
       return redirect()->route('home');
     }
 
+/*    public function getAddToCart(Request $request,$id){
+      $sanpham = SanPham::find($id);
+      $oldCart = Session('cart')?Session::get('cart'):null;
+      $cart = new Cart($oldCart);
+      $cart->add($sanpham, $id);
+      $request->session()->put('cart',$cart);
+      return redirect()->back();
+}
+    public function getDelItemCart($id){
+      $oldCart = Session('cart')?Session::get('cart'):null;
+      $cart = new Cart($oldCart);
+      $cart->removeItem($id);
+      if (count($cart->items)>0){
+        Session::put('cart',$cart);
+      }
+      else {
+        Session::forget('cart');
+      }
+      return redirect()->back();
+    }*/
+
+
+    public function getCTSanPham($id){
+      /*$thuonghieu = ThuongHieu::all();
+      $sanpham = SanPham::find($id);
+      $ctsanpham = CTSanPham::find($sanpham->id);
+      $hinhanh = HinhAnh::all();
+      return view('frontend.detail_product',['thuonghieu'=>$thuonghieu,'sanpham'=>$sanpham,'hinhanh'=>$hinhanh,'chitietsanpham'=>$ctsanpham]);*/
+      return view('frontend.detail_product');
+    }
+
     public function get_dathang(){
       return view('frontend.cart');
+    }
+
+    public function get_sanpham(){
+      return view('frontend.product');
     }
 }

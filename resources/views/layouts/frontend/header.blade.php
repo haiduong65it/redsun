@@ -46,7 +46,7 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="index.html">Trang chủ</a></li>
                             <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle">Sản phẩm</a>
+                            <a href="product" class="nav-link dropdown-toggle">Sản phẩm</a>
                         </li>
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle">Thương hiệu</a>

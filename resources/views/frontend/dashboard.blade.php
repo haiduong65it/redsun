@@ -77,15 +77,14 @@
                                 @endif
                                 @endforeach
                                 <div class="product-details">
-                                    <h6>{{$sp->tensanpham}}</h6>
+                                    <h6><a href="frontend/detai_product/{{$sp->id}}">{{$sp->tensanpham}}</a></h6>
                                     <div class="price">
                                         @foreach($chitietsanpham as $ct)
                                             @if ($ct->id_sanpham == $sp->id) <h6>{{$ct->dongia}} VNĐ</h6> @break @endif
                                         @endforeach
                                     </div>
                                     <div class="prd-bottom">
-
-                                        <a href="" class="social-info">
+                                        <a href="" class="social-info" href="{{-- {{route('themgiohang', $sp->id)}} --}}">
                                             <span class="ti-bag"></span>
                                             <p class="hover-text">add to bag</p>
                                         </a>
@@ -161,9 +160,9 @@
                                                     @endif
                                                 @endforeach
                                             </div>
-                                            <h4>{{$sp->tensanpham}}</h4>
+                                            <h4><a href="detai_product/{{$sp->id}}">{{$sp->tensanpham}}</a></h4>
                                             <div class="add-bag d-flex align-items-center justify-content-center">
-                                                <a class="add-btn" href=""><span class="ti-bag"></span></a>
+                                                <a class="add-btn" href="{{-- {{route('themgiohang', $sp->id)}} --}}"><span class="ti-bag"></span></a>
                                                 <span class="add-text text-uppercase">Add to Bag</span>
                                             </div>
                                         </div>
