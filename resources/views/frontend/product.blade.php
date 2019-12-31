@@ -22,11 +22,11 @@
 						<div class="head">Thương Hiệu</div>
 						<form action="#">
 							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"><label for="apple">Apple<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="asus" name="brand"><label for="asus">Asus<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="gionee" name="brand"><label for="gionee">Gionee<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="micromax" name="brand"><label for="micromax">Micromax<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="samsung" name="brand"><label for="samsung">Samsung<span>(19)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"><label for="apple">
+									{{-- @foreach($loaisanpham as $lsp)
+                    					<option value="{{$lsp->id}}">{{$lsp->tenloaisanpham}}</option>
+                    				@endforeach --}}
+									<span>(29)</span></label></li>
 							</ul>
 						</form>
 					</div>
@@ -34,14 +34,11 @@
 						<div class="head">Color</div>
 						<form action="#">
 							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">Black<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather" name="color"><label for="balckleather">Black
-										Leather<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="color"><label for="blackred">Black
-										with red<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="gold" name="color"><label for="gold">Gold<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey" name="color"><label for="spacegrey">Spacegrey<span>(19)</span></label></li>
-							</ul>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">
+									{{-- @foreach($hinhanh as $ha)
+				                    	<option value="{{$ha->id}}">{{$ha->mau}}</option>
+				                	@endforeach --}}
+									<span>(29)</span></label></li>
 						</form>
 					</div>
 					<div class="common-filter">
@@ -132,26 +129,6 @@
 					</div>
 				</section>
 				<!-- End Best Seller -->
-				<!-- Start Filter Bar -->
-				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="sorting mr-auto">
-						<select>
-							<option value="1">Show 12</option>
-							<option value="1">Show 12</option>
-							<option value="1">Show 12</option>
-						</select>
-					</div>
-					<div class="pagination">
-						<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-						<a href="#" class="active">1</a>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-						<a href="#">6</a>
-						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-					</div>
-				</div>
-				<!-- End Filter Bar -->
 			</div>
 		</div>
 	</div>

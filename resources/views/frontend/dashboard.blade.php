@@ -72,12 +72,15 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="single-product">
                                 @foreach($hinhanh as $ha)
-                                @if (($ha->id_sanpham == $sp->id) && ($ha->noihienthi == 'TC')) 
-                                    <img class="img-fluid" src="upload/img/product/{{$ha->file_anh}} " alt="">
+                                @if (($ha->id_sanpham == $sp->id) && ($ha->noihienthi == 'TC'))
+                                <div>                                   
+                                    <a href="detail_product/{{$sp->id}}"><img  class="img-fluid" src="upload/img/product/{{$ha->file_anh}} " alt="" ></a>
+                                </div> 
+                                    
                                 @endif
                                 @endforeach
                                 <div class="product-details">
-                                    <h6><a href="frontend/detai_product/{{$sp->id}}">{{$sp->tensanpham}}</a></h6>
+                                    <h6><a href="detail_product/{{$sp->id}}">{{$sp->tensanpham}}</a></h6>
                                     <div class="price">
                                         @foreach($chitietsanpham as $ct)
                                             @if ($ct->id_sanpham == $sp->id) <h6>{{$ct->dongia}} VNĐ</h6> @break @endif
@@ -152,7 +155,9 @@
                                     @if ($ha->id_sanpham == $sp->id)
                                     <!-- single exclusive carousel -->
                                     <div class="single-exclusive-slider">
-                                        <img class="img-fluid" src="upload/img/product/{{$ha->file_anh}}" alt="">
+                                        <div>                                   
+                                            <a href="detail_product/{{$sp->id}}"><img  class="img-fluid" src="upload/img/product/{{$ha->file_anh}} " alt="" ></a>
+                                        </div>
                                         <div class="product-details">
                                             <div class="price">
                                                 @foreach($chitietsanpham as $ct)
@@ -160,7 +165,7 @@
                                                     @endif
                                                 @endforeach
                                             </div>
-                                            <h4><a href="detai_product/{{$sp->id}}">{{$sp->tensanpham}}</a></h4>
+                                            <h4><a href="detail_product/{{$sp->id}}">{{$sp->tensanpham}}</a></h4>
                                             <div class="add-bag d-flex align-items-center justify-content-center">
                                                 <a class="add-btn" href="{{-- {{route('themgiohang', $sp->id)}} --}}"><span class="ti-bag"></span></a>
                                                 <span class="add-text text-uppercase">Add to Bag</span>

@@ -185,7 +185,7 @@ Route::post('/edit/{id}', 'FrontendController@post_Edit');
 Route::get('logout', 'FrontendController@Logout');
 Route::get('/cart','FrontendController@get_dathang');
 Route::post('/cart','FrontendController@post_dathang');
-/*Route::get('/detail_product','FrontendtController@getCTSanPham');*/
+Route::get('/detail_product/{id}','FrontendController@getCTSanPham');
 
 /*Route::get('/add-to-cart/{id}',[
 	'as' => 'themgiohang',
@@ -199,3 +199,4 @@ Route::get('/del-cart/{id}',[
 
 Route::get('/product','FrontendController@get_sanpham');
 Route::post('/product','FrontendController@post_sanpham');
+Route::get('/introduce','FrontendController@get_introduce');

@@ -6,6 +6,7 @@ use App\ThuongHieu;
 use App\SanPham;
 use App\CTSanPham;
 use App\HinhAnh;
+use App\LoaiSanPham;
 use Session;
 
 use Illuminate\Http\Request;
@@ -187,12 +188,12 @@ class FrontendController extends Controller
 
 
     public function getCTSanPham($id){
-      /*$thuonghieu = ThuongHieu::all();
+      $thuonghieu = ThuongHieu::all();
       $sanpham = SanPham::find($id);
-      $ctsanpham = CTSanPham::find($sanpham->id);
+      $ctsanpham = CTSanPham::where($id_sanpham=$sanpham->id);
       $hinhanh = HinhAnh::all();
-      return view('frontend.detail_product',['thuonghieu'=>$thuonghieu,'sanpham'=>$sanpham,'hinhanh'=>$hinhanh,'chitietsanpham'=>$ctsanpham]);*/
-      return view('frontend.detail_product');
+      $loaisanpham = LoaiSanPham::all();
+      return view('frontend.detail_product',['thuonghieu'=>$thuonghieu,'sanpham'=>$sanpham,'hinhanh'=>$hinhanh,'chitietsanpham'=>$ctsanpham]);
     }
 
     public function get_dathang(){
@@ -201,5 +202,9 @@ class FrontendController extends Controller
 
     public function get_sanpham(){
       return view('frontend.product');
+    }
+
+    public function get_introduce(){
+      return view('frontend.introduce');
     }
 }

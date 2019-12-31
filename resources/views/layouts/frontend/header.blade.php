@@ -49,14 +49,7 @@
                             <a href="product" class="nav-link dropdown-toggle">Sản phẩm</a>
                         </li>
                         <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle">Thương hiệu</a>
-                        </li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle">Loại sản phẩm</a>
-                           
-                        </li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            <a href="introduce" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                 aria-expanded="false">Giới thiệu</a>
                             
                         </li>

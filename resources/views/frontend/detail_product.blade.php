@@ -27,6 +27,7 @@
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
 					<div class="s_Product_carousel">
+						
 						<div class="single-prd-item">
 							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
 						</div>
@@ -36,19 +37,72 @@
 						<div class="single-prd-item">
 							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
 						</div>
+						{{-- <div class="single-prd-item">
+
+							@foreach($sanpham as $sp)
+								@foreach($hinhanh as $ha)
+	                                @if (($ha->id_sanpham == $sp->id) && $ha->noihienthi == 'tct'))
+	                                <img  class="img-fluid" src="upload/img/product/{{$ha->file_anh}} " alt="" > 
+	                                @endif
+	                            @endforeach
+	                        @endforeach
+						</div>
+						<div class="single-prd-item">
+							@foreach($hinhanh as $ha)
+                                @if (($ha->id_sanpham == $sp->id))
+                                <div>                                   
+                                    <img  class="img-fluid" src="upload/img/product/{{$ha->file_anh}} " alt="" >
+                                </div> 
+                                    
+                                @endif
+                            @endforeach
+						</div>
+						<div class="single-prd-item">
+							@foreach($hinhanh as $ha)
+                                @if (($ha->id_sanpham == $sp->id))
+                                <div>                                   
+                                    <img  class="img-fluid" src="upload/img/product/{{$ha->file_anh}} " alt="" >
+                                </div> 
+                                    
+                                @endif
+                            @endforeach
+						</div> --}}
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-						<h3>Faded SkyBlu Denim Jeans</h3>
-						<h2>$149.99</h2>
-						<ul class="list">
-							<li><a class="active" href="#"><span>Category</span> : Household</a></li>
-							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
-						</ul>
-						<p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for
-							something that can make your interior look awesome, and at the same time give you the pleasant warm feeling
-							during the winter.</p>
+
+						<div class="product-details">
+							<h3>{{$sanpham->tensanpham}}</h3>
+								<div class="price">
+								@foreach($sanpham as $sp)
+		                            @foreach($chitietsanpham as $ct)
+		                                 @if ($ct->id_sanpham == $sp->id) <h6>{{$ct->dongia}} VNĐ</h6> 
+		                                 @break 
+		                                 @endif
+		                            @endforeach
+		                        @endforeach
+	                        </div>
+						</div>
+						
+						
+                        <div class="product_count">
+                        	<label for="InputMau">Chọn màu</label>
+                        	 <select  class="form-control"  name="mau" id="mau">
+						        @foreach($chitietsanpham as $ct)
+						       		<option value="{{$ct->id}}">{{$ct->mau}}</option>
+						        @endforeach		
+				             </select>
+                        </div>
+                          <div class="product_count">
+                        	<label for="InputSize">Chọn Size</label>
+                        	 <select  class="form-control"  name="size" id="size">
+						        @foreach($chitietsanpham as $ct)
+						       		<option value="{{$ct->id}}">{{$ct->size}}</option>
+						        @endforeach		
+				             </select>
+                        </div>
+
 						<div class="product_count">
 							<label for="qty">Quantity:</label>
 							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
@@ -57,6 +111,7 @@
 							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
 							 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 						</div>
+						
 						<div class="card_area d-flex align-items-center">
 							<a class="primary-btn" href="#">Add to Cart</a>
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
