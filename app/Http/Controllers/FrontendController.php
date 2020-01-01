@@ -7,6 +7,7 @@ use App\SanPham;
 use App\CTSanPham;
 use App\HinhAnh;
 use App\LoaiSanPham;
+use App\Cart;
 use Session;
 
 use Illuminate\Http\Request;
@@ -129,6 +130,35 @@ class FrontendController extends Controller
 
     public function post_Edit(Request $request,$id)
     {
+      $validator = Validator::make($request->all(), [
+          'InputMail' => 'required',
+          'password' => 'required|min:5',
+          're-password' => 'required|same:password',
+          'InputName' => 'required|min:5',
+          'InputSex' => 'required',
+          'InputTel' => 'required|digits_between:10,10',
+          'InputAdd' => 'required',
+          'InputBirth' => 'required|before:today',
+        ],
+        [
+          'InputMail.required' => "Chưa nhập email",
+          'password.required' => "Chưa nhập mật khẩu",
+          'password.min' => "Mật khẩu phải có ít nhất 5 kí tự",
+          'InputName.required' => "Chưa nhập họ tên",
+          'InputName.min' => "Họ tên phải có ít nhất 5 kí tự",
+          're-password.required' => "Chưa nhập lại mật khẩu",
+          're-password.same' => "Mật khẩu nhập lại chưa khớp",
+          'InputSex.required' => "Chưa chọn giới tính",
+          'InputTel.required' => "Chưa nhập số điện thoại",
+          'InputTel.digits_between' => "Số điện thoại phải có đủ 10 số",
+          'InputAdd.required' => "Chưa nhập địa chỉ",
+          'InputBirth.required' => "Chưa chọn ngày sinh",
+          'InputBirth.before' => "Ngày sinh phải trước ngày hôm nay",
+        ]);   
+      if ($validator->fails()) 
+      {
+        return back()->withErrors($validator)->withInput();
+      }
       $thanhvien = ThanhVien::find($id);
       $thanhvien->hoten = $request->InputName;
       $thanhvien->email = $request->InputMail;
@@ -165,14 +195,15 @@ class FrontendController extends Controller
       return redirect()->route('home');
     }
 
-/*    public function getAddToCart(Request $request,$id){
+    public function AddToCart(Request $request,$id){
       $sanpham = SanPham::find($id);
       $oldCart = Session('cart')?Session::get('cart'):null;
       $cart = new Cart($oldCart);
-      $cart->add($sanpham, $id);
+      $ctsanpham = CTSanPham::find($request->size_color);
+      $cart->add($sanpham, $id, $ctsanpham, $request->qty);
       $request->session()->put('cart',$cart);
       return redirect()->back();
-}
+    }
     public function getDelItemCart($id){
       $oldCart = Session('cart')?Session::get('cart'):null;
       $cart = new Cart($oldCart);
@@ -184,13 +215,13 @@ class FrontendController extends Controller
         Session::forget('cart');
       }
       return redirect()->back();
-    }*/
+    }
 
 
     public function getCTSanPham($id){
       $thuonghieu = ThuongHieu::all();
       $sanpham = SanPham::find($id);
-      $ctsanpham = CTSanPham::where($id_sanpham=$sanpham->id);
+      $ctsanpham = CTSanPham::where('id_sanpham', $sanpham->id)->get();
       $hinhanh = HinhAnh::all();
       $loaisanpham = LoaiSanPham::all();
       return view('frontend.detail_product',['thuonghieu'=>$thuonghieu,'sanpham'=>$sanpham,'hinhanh'=>$hinhanh,'chitietsanpham'=>$ctsanpham]);

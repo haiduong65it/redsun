@@ -29,13 +29,35 @@
                         <thead>
                             <tr>
                                 <th scope="col">Sản phẩm</th>
+                                <th scope="col">Hình ảnh</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Màu</th>
                                 <th scope="col">Giá</th>
                                 <th scope="col">Số lượng</th>
                                 <th scope="col">Tổng cộng</th>
+                                <th scope="col">X</th>
                             </tr>
                         </thead>
                         <tbody>
-                           
+                            @if(Session::has('cart'))
+                                @foreach ($product_cart as $product)
+                                    <tr>
+                                        <td>{{$product['item']['tensanpham']}}</td>
+                                        @foreach($hinhanh as $ha)
+                                            @if (($ha->id_sanpham == $product['item']['id']) and ($ha->noihienthi == 'TC')) 
+                                                <td><img src="upload/img/product/{{$ha->file_anh}}" width="100px"></td>
+                                                @break
+                                            @endif
+                                        @endforeach
+                                        <td>{{$product['detail']['size']}}</td>
+                                        <td>{{$product['detail']['mau']}}</td>
+                                        <td>{{$product['detail']['dongia']}} VNĐ</td>
+                                        <td>{{$product['qty']}}</td>
+                                        <td>{{($product['detail']['dongia'] * $product['qty'])}} VNĐ</td>
+                                        <td><a class="delete" href="{{route('xoagiohang',$product['item']['id'])}}"><i class="fa fa-close"></i></a></td>
+                                    </tr>
+                                @endforeach
+                            @endif
                             <tr class="bottom_button">
                                 <td>
                                     <a class="gray_btn" href="#">Update Cart</a>
@@ -46,6 +68,16 @@
                                 <td>
 
                                 </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td></td>
                                 <td>
                                     <div class="cupon_text d-flex align-items-center">
                                         <input type="text" placeholder="Coupon Code">
@@ -62,13 +94,37 @@
 
                                 </td>
                                 <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
                                     <h5>Subtotal</h5>
                                 </td>
                                 <td>
-                                    <h5>$2160.00</h5>
+                                    <h5>@if(Session::has('cart')) {{number_format(Session('cart')->totalPrice)}} @else 0 @endif VNĐ</h5>
                                 </td>
                             </tr>
                             <tr class="shipping_area">
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
                                 <td>
                                     
                                 </td>
@@ -164,7 +220,7 @@
                     <?php 
                         use App\thanhvien;
                         if (Auth::guard('thanhvien')->check()){
-                            $thanhvien = ThanhVien::find(Auth::user()->id);
+                            $thanhvien = ThanhVien::find(Auth::guard('thanhvien')->user()->id);
                         }
                     ?>
                     var ten = "{{$thanhvien->hoten}}";

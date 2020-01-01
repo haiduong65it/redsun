@@ -187,15 +187,15 @@ Route::get('/cart','FrontendController@get_dathang');
 Route::post('/cart','FrontendController@post_dathang');
 Route::get('/detail_product/{id}','FrontendController@getCTSanPham');
 
-/*Route::get('/add-to-cart/{id}',[
+Route::get('/add-to-cart/{id}',[
 	'as' => 'themgiohang',
-	'uses' => 'FrontendtController@getAddToCart'
+	'uses' => 'FrontendController@AddToCart'
 ]);
 
 Route::get('/del-cart/{id}',[
 	'as' => 'xoagiohang',
-	'uses' => 'FrontendtController@getDelItemCart'
-]);*/
+	'uses' => 'FrontendController@getDelItemCart'
+]);
 
 Route::get('/product','FrontendController@get_sanpham');
 Route::post('/product','FrontendController@post_sanpham');

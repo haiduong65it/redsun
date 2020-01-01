@@ -6,25 +6,15 @@
             <div class="container">
                 <div class="collapse navbar-collapse">
                     <ul class="nav ml-auto navbar-right">
-                        <li class="nav-item dropdown submenu">
-                            @if (Auth::guard('thanhvien')->check())
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                aria-expanded="false">Hello, {{Auth::guard('thanhvien')->user()->hoten}} <span class="fa fa-fw fa-user"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="edit/{{Auth::guard('thanhvien')->user()->id}}">Account</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
-                                </ul>
-                            @else
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                aria-expanded="false">User <span class="fa fa-fw fa-user"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="login">Đăng nhập</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="register">Đăng kí</a></li>
-                                </ul>
-                            @endif
-                        </li>
+                        @if (Auth::guard('thanhvien')->check())
+                            <li class="nav-item"><a class="nav-link" href="edit/{{Auth::guard('thanhvien')->user()->id}}">Xin chào, {{Auth::guard('thanhvien')->user()->hoten}} <span class="fa fa-fw fa-user"></span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="logout">Đăng xuất</a></li>
+                        @else
+                            <li class="nav-item"><a class="nav-link" href="login">Đăng nhập</a></li>
+                            <li class="nav-item"><a class="nav-link" href="register">Đăng kí</a></li>
+                        @endif
                         <li class="nav-item">
-                            <a href="cart" class="nav-link dropdown-toggle">Giỏ hàng <span class="fa fa-fw fa-shopping-cart"></span></a>
+                            <a href="cart" class="nav-link dropdown-toggle">Giỏ hàng <i class="fa fa-fw fa-shopping-cart"></i><span>@if(Session::has('cart')){{Session('cart')->totalQty}} @else 0 @endif</span></a>
                         </li>
                     </ul>
                 </div>
@@ -44,7 +34,7 @@
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Trang chủ</a></li>
+                            <a class="nav-link" href="{{route('home')}}">Trang chủ</a></li>
                             <li class="nav-item submenu dropdown">
                             <a href="product" class="nav-link dropdown-toggle">Sản phẩm</a>
                         </li>
@@ -53,7 +43,6 @@
                                 aria-expanded="false">Giới thiệu</a>
                             
                         </li>
-                        
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item">

@@ -45,7 +45,7 @@
 		    @endif
 			<div>
 				<h2>Account</h2>	
-				<form class="row login_form" action="edit/{{$thanhvien->id}}" method="POST" id="contactForm">
+				<form class="row login_form" action="edit/{{$thanhvien->id}}" method="POST" id="contactForm" enctype='multipart/form-data'>
 					<input type="hidden" name="_token" value="{{csrf_token()}}">
 					<fieldset class="col">
 						<legend>Thông tin đăng nhập</legend>
