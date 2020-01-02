@@ -41,6 +41,10 @@
             @endif
             <form class="forms-sample" action="admin/sanpham/sua/{{$sanpham->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
+              <div class="form-group">
+                <label for="InputName">Tên sản phẩm</label>
+                <input type="text" class="form-control" name="InputName" placeholder="Nhập tên sản phẩm" value="{{$sanpham->tensanpham}}">
+              </div>
              <div class="form-group">
               <label for="InputLSP">Chọn loai sản phẩm</label>
               <select  class="form-control"  name="LSP" id="LSP">
@@ -79,15 +83,15 @@
               <label for="InputDG">Đơn giá</label>
               <input type="number" class="form-control" name="InputDG" placeholder="Nhập đơn giá" value="{{$sanpham->dongia}}">
             </div>
-              
+               <div class="button" style="width: 90%;"> 
+                <button type="submit" class="btn btn-success mr-2 col-lg-6" style="width: 100%">Sửa</button>
+                <button type="reset" class="btn btn-light col-lg-6"  style="width: 100%">Làm mới</button>
+              </div>
             </form>
           </div>
           <!-- /.box -->
         </div>        
-          <div class="button" style="width: 90%;"> 
-            <button type="submit" class="btn btn-success mr-2 col-lg-6" style="margin: 5px 20px;">Thêm</button>
-            <button type="reset" class="btn btn-light col-lg-6"  style="margin: 5px 20px;">Làm mới</button>
-          </div>
+         
         <!-- /.col -->
       </div>
       <!-- /.row -->

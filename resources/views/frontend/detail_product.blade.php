@@ -75,7 +75,7 @@
 	<!--================Product Description Area =================-->
 	<section class="product_description_area">
 		<div class="container">
-			<h2 style="background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%); height: 60px" class="primary-btn d-flex align-items-center">Comments</h2>
+			<h2 style="background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%); height: 60px ;" class="primary-btn d-flex align-items-center">Comments</h2>
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="comment_list">

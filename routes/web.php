@@ -198,5 +198,5 @@ Route::get('/del-cart/{id}',[
 ]);
 
 Route::get('/product','FrontendController@get_sanpham');
-Route::post('/product','FrontendController@post_sanpham');
+Route::post('/product/{id}','FrontendController@post_sanpham');
 Route::get('/introduce','FrontendController@get_introduce');

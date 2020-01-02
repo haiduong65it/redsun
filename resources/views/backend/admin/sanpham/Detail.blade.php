@@ -40,7 +40,7 @@
           value="{{$chitietsanpham->soluong}}">
         </div>
         <div class="form-group">
-          <label for="InputDG">ĐƠn Giá</label>
+          <label for="InputDG">Đơn Giá</label>
           <input type="number" class="form-control" name="InputDG" placeholder="Nhập đơn giá"
           value="{{$chitietsanpham->dongia}}">
         </div>

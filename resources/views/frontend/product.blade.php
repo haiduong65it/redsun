@@ -19,29 +19,29 @@
 				<div class="sidebar-filter mt-50">
 					<div class="top-filter-head">Lọc sản phẩm</div>
 					<div class="common-filter">
-						<div class="head">Thương Hiệu</div>
-						<form action="#">
-							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"><label for="apple">
-									{{-- @foreach($loaisanpham as $lsp)
-                    					<option value="{{$lsp->id}}">{{$lsp->tenloaisanpham}}</option>
-                    				@endforeach --}}
-									<span>(29)</span></label></li>
-							</ul>
-						</form>
-					</div>
+							<div class="head">Loại sản phẩm</div>
+							<form action="#">
+								<ul>
+									<li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"><label for="apple">
+										{{-- @foreach($loaisanpham as $lsp)
+	                    					<option value="{{$lsp->id}}">{{$lsp->tenloaisanpham}}</option>
+	                    				@endforeach --}}
+										<span>(29)</span></label></li>
+								</ul>
+							</form>
+						</div>
 					<div class="common-filter">
-						<div class="head">Color</div>
+						<div class="head">Thương hiệu</div>
 						<form action="#">
 							<ul>
 								<li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">
-									{{-- @foreach($hinhanh as $ha)
-				                    	<option value="{{$ha->id}}">{{$ha->mau}}</option>
+									{{-- @foreach($thuonghieu as $th)
+				                    	<option value="{{$th->id}}">{{$th->tenthuonghieu}}</option>
 				                	@endforeach --}}
 									<span>(29)</span></label></li>
 						</form>
 					</div>
-					<div class="common-filter">
+				<div class="common-filter">
 						<div class="head">Price</div>
 						<div class="price-range-area">
 							<div id="price-range"></div>
@@ -55,6 +55,7 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 			<div class="col-xl-9 col-lg-8 col-md-7">
@@ -88,7 +89,7 @@
 				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
 					<div class="row">
-						 {{-- @foreach($sanpham as $sp)
+						{{--  @foreach($sanpham as $sp)
                         <!-- single product -->
                         <div class="col-lg-3 col-md-6">
                             <div class="single-product">
@@ -98,7 +99,7 @@
                                 @endif
                                 @endforeach
                                 <div class="product-details">
-                                    <h6><a href="frontend/detai_product/{{$sp->id}}">{{$sp->tensanpham}}</a></h6>
+                                    <h6><a href="frontend/product/{{$sp->id}}">{{$sp->tensanpham}}</a></h6>
                                     <div class="price">
                                         @foreach($chitietsanpham as $ct)
                                             @if ($ct->id_sanpham == $sp->id) <h6>{{$ct->dongia}} VNĐ</h6> @break @endif

@@ -8,6 +8,7 @@ use App\CTSanPham;
 use App\HinhAnh;
 use App\LoaiSanPham;
 use App\Cart;
+use App\CTDonHang;
 use Session;
 
 use Illuminate\Http\Request;
@@ -224,15 +225,66 @@ class FrontendController extends Controller
       $ctsanpham = CTSanPham::where('id_sanpham', $sanpham->id)->get();
       $hinhanh = HinhAnh::all();
       $loaisanpham = LoaiSanPham::all();
-      return view('frontend.detail_product',['thuonghieu'=>$thuonghieu,'sanpham'=>$sanpham,'hinhanh'=>$hinhanh,'chitietsanpham'=>$ctsanpham]);
+      return view('frontend.detail_product',['thuonghieu'=>$thuonghieu,'sanpham'=>$sanpham,'hinhanh'=>$hinhanh,'chitietsanpham'=>$ctsanpham, 'loaisanpham'=>$loaisanpham]);
     }
 
     public function get_dathang(){
       return view('frontend.cart');
     }
 
+    public function postDathang(Request $request){
+      $cart = Session::get('cart');
+      foreach ($cart->items as $key => $value) {
+        $sanpham = SanPham::find($key);
+        if ($sanpham->soluong < $value['qty']){
+          return redirect()->back()->withIntput('thongbao','Số lượng mặt hàng đã chọn cửa hàng hiện tại không đủ để cung cấp. Mong bạn thông cảm cho sự bất tiện này!!!');
+        }
+        else{
+          if ($request->payment == 'payment-2')
+            $payment = 'Thanh Toán qua thẻ ngân hàng';
+          else
+            $payment = 'Thanh toán khi nhận hàng';
+          $donhang = new DonHang;
+          $donhang->phuongthucthanhtoan = $payment;
+          $donhang->ngaydat = date('Y-m-d');
+          $donhang->id_thanhvien = Auth::user()->email;
+          $donhang->hoten = $request->ten_nguoi_mua;
+          $donhang->diachi = $request->dia_chi;
+          $donhang->sdt = $request->dien_thoai;
+          $donhang->tongtien = $cart->totalPrice;
+          $donhang->save();
+
+          foreach ($cart->items as $key => $value) {
+            $ctdonhang = new CTDonHang;
+            $ctdonhang->id = $donhang->id_donhang;
+            $ctdonhang->id_sanpham = $key;
+            $ctdonhang->soluong = $value['qty'];
+            $ctdonhang->dongia = ($value['price']/$value['qty']);
+            $ctdonhang->save();
+
+            $sanpham = SanPham::find($key);
+            $sanpham->soluong -= $value['qty'];
+            $sanpham->save();
+          }
+
+          Session::forget('cart');
+          return redirect('frontend.cart')->with('thongbao','Đặt hàng thành công');
+        }
+      }
+     
+    }
+
     public function get_sanpham(){
       return view('frontend.product');
+    }
+
+    public function post_sanpham($id){
+      $thuonghieu = ThuongHieu::all();
+      $sanpham = SanPham::find($id);
+      $ctsanpham = CTSanPham::where('id_sanpham', $sanpham->id)->get();
+      $hinhanh = HinhAnh::all();
+      $loaisanpham = LoaiSanPham::all();
+      return view('frontend.product',['thuonghieu'=>$thuonghieu,'sanpham'=>$sanpham,'hinhanh'=>$hinhanh,'chitietsanpham'=>$ctsanpham,'loaisanpham'=>$loaisanpham]);
     }
 
     public function get_introduce(){

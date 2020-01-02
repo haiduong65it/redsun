@@ -52,6 +52,7 @@ class SanphamController extends Controller
     $sanpham->id_baohanh = $request->BH;
 
     $sanpham->save();
+    
     foreach ($request->InputSize as $key => $value) {
       # code...
       $chitietsanpham = new CTSanpham;
@@ -84,12 +85,12 @@ class SanphamController extends Controller
     $this->validate($request,
       [
         'InputName' => 'required|min:2',
-        'InputDongia' => 'required',
+        /*'InputDongia' => 'required',*/
       ],
       [
         'InputName.required' => "Chưa nhập tên sản phẩm",
         'InputName.min' => "Tên sản phẩm chứa ít nhất 2 kí tự",
-        'InputDongia.required' => "Chưa nhập đơn giá",
+        /*'InputDongia.required' => "Chưa nhập đơn giá",*/
       ]);
 
     $sanpham->tensanpham = $request->InputName;
@@ -99,7 +100,7 @@ class SanphamController extends Controller
 
     $sanpham->save();
 
-    return redirect('admin/sanpham/danhsach')->with('thongbao',"Sửa thành công sản phẩm ".$sanpham->tensp);
+    return redirect('admin/sanpham/danhsach')->with('thongbao',"Sửa thành công sản phẩm ".$sanpham->tensanpham);
     
   }
 
