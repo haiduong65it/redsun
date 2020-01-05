@@ -23,7 +23,7 @@ class DonhangNVController extends Controller
     }
 
     public function get_capnhatTTDH($id){
-      $donhang = DonHang::find($MaDH);
+      $donhang = DonHang::find($id);
       return view('admin/donhang/ttdh',['donhang'=>$donhang]);
     }
 

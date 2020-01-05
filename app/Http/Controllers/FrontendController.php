@@ -275,17 +275,16 @@ class FrontendController extends Controller
     }
 
     public function get_sanpham(){
-      return view('frontend.product');
-    }
-
-    public function post_sanpham($id){
       $thuonghieu = ThuongHieu::all();
-      $sanpham = SanPham::find($id);
+      $sanpham = SanPham::all();
       $ctsanpham = CTSanPham::where('id_sanpham', $sanpham->id)->get();
       $hinhanh = HinhAnh::all();
       $loaisanpham = LoaiSanPham::all();
       return view('frontend.product',['thuonghieu'=>$thuonghieu,'sanpham'=>$sanpham,'hinhanh'=>$hinhanh,'chitietsanpham'=>$ctsanpham,'loaisanpham'=>$loaisanpham]);
     }
+    /*public function get_sanpham(){
+      return view('frontend.product');
+    }*/
 
     public function get_introduce(){
       return view('frontend.introduce');

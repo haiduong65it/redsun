@@ -18,7 +18,7 @@
 			<div class="col-xl-3 col-lg-4 col-md-5">
 				<div class="sidebar-filter mt-50">
 					<div class="top-filter-head">Lọc sản phẩm</div>
-					<div class="common-filter">
+						<div class="common-filter">
 							<div class="head">Loại sản phẩm</div>
 							<form action="#">
 								<ul>
@@ -87,49 +87,37 @@
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
-				<section class="lattest-product-area pb-40 category-list">
-					<div class="row">
-						{{--  @foreach($sanpham as $sp)
-                        <!-- single product -->
-                        <div class="col-lg-3 col-md-6">
-                            <div class="single-product">
-                                @foreach($hinhanh as $ha)
-                                @if (($ha->id_sanpham == $sp->id) && ($ha->noihienthi == 'SP')) 
-                                    <img class="img-fluid" src="upload/img/product/{{$ha->file_anh}} " alt="">
-                                @endif
-                                @endforeach
-                                <div class="product-details">
-                                    <h6><a href="frontend/product/{{$sp->id}}">{{$sp->tensanpham}}</a></h6>
-                                    <div class="price">
-                                        @foreach($chitietsanpham as $ct)
-                                            @if ($ct->id_sanpham == $sp->id) <h6>{{$ct->dongia}} VNĐ</h6> @break @endif
-                                        @endforeach
-                                    </div>
-                                    <div class="prd-bottom">
-                                        <a href="" class="social-info" href="{{route('themgiohang', $sp->id)}}">
-                                            <span class="ti-bag"></span>
-                                            <p class="hover-text">add to bag</p>
-                                        </a>
-                                        <a href="" class="social-info">
-                                            <span class="lnr lnr-heart"></span>
-                                            <p class="hover-text">Wishlist</p>
-                                        </a>
-                                        <a href="" class="social-info">
-                                            <span class="lnr lnr-sync"></span>
-                                            <p class="hover-text">compare</p>
-                                        </a>
-                                        <a href="" class="social-info">
-                                            <span class="lnr lnr-move"></span>
-                                            <p class="hover-text">view more</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach --}}
-					</div>
-				</section>
+				
 				<!-- End Best Seller -->
 			</div>
+			{{-- <section class="lattest-product-area pb-40 category-list">
+					<div class="row">
+                    @foreach($sanpham as $sp)
+                        <!-- single product -->
+                        <div class="col-lg-3 col-md-6">
+                            <a href="frontend/product/{{$sp->id}}">
+                                <div class="single-product">
+                                    @foreach($hinhanh as $ha)
+                                    @if (($ha->id_sanpham == $sp->id) && ($ha->noihienthi == 'SP'))
+                                    <div>                                   
+                                        <img  class="img-fluid" src="upload/img/product/{{$ha->file_anh}} " alt="" >
+                                    </div> 
+                                        
+                                    @endif
+                                    @endforeach
+                                    <div class="product-details">
+                                        <h6>{{$sp->tensanpham}}</h6>
+                                        <div class="price">
+                                            @foreach($chitietsanpham as $ct)
+                                                @if ($ct->id_sanpham == $sp->id) <h6>Giá: {{$ct->dongia}} VNĐ</h6> @break @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                	</div>
+				</section> --}}
 		</div>
 	</div>

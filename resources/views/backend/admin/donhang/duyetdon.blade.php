@@ -41,10 +41,10 @@
             @endif
             <form class="forms-sample" action="admin/donhang/sua/{{$donhang->id}}" method="POST" enctype="multipart/form-data" style="margin: 1%;">
               <div class="form-group">
-                <label for="InputIDNV">Nhân viên giao hàng</label>
-                <select  class="form-control"  name="nvgh" id="nvgh">
+                <label for="InputIDNV">Nhân viên</label>
+                <select  class="form-control"  name="nv" id="nv">
                   @foreach($nhanvien as $nv)
-                  <option value="{{$nv->IDNV}}">{{$nv->hoten}}</option>
+                  <option value="{{$nv->id_nhanvien}}">{{$nv->hoten}}</option>
                   @endforeach
                 </select>
               </div>
