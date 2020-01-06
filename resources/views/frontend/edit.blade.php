@@ -19,7 +19,7 @@
 				<div class="col-first">
 					<h1>Account</h1>
 					<nav class="d-flex align-items-center">
-						<a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="{{route('home')}}">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="">Account</a>
 					</nav>
 				</div>

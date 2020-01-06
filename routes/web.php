@@ -167,8 +167,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'AdminLogin'], function(){
 
     	Route::get('danhsach','DonhangController@danhsach');
 
-		Route::get('duyetdon/{id}','DonhangController@get_duyet');
-		Route::post('duyetdon/{id}','DonhangController@post_duyet');
+		Route::get('duyetdon/{id}','DonhangController@duyet');
 
 		Route::get('chitiet/{id}','DonhangController@get_chitiet');
 		Route::get('xoa/{id}','DonhangController@get_xoa');
@@ -183,8 +182,7 @@ Route::post('/register', 'FrontendController@post_Register');
 Route::get('/edit/{id}', 'FrontendController@get_Edit');
 Route::post('/edit/{id}', 'FrontendController@post_Edit');
 Route::get('logout', 'FrontendController@Logout');
-Route::get('/cart','FrontendController@get_dathang');
-Route::post('/cart','FrontendController@post_dathang');
+Route::get('/cart','FrontendController@get_giohang');
 Route::get('/detail_product/{id}','FrontendController@getCTSanPham');
 
 Route::get('/add-to-cart/{id}',[
@@ -199,6 +197,7 @@ Route::get('/del-cart/{id}',[
 
 Route::get('/product','FrontendController@get_sanpham');
 
-/*Route::get('/product','FrontendController@get_sanpham');*/
-
 Route::get('/introduce','FrontendController@get_introduce');
+
+Route::get('/checkout', 'FrontendController@get_checkout');
+Route::post('/checkout', 'FrontendController@post_checkout');

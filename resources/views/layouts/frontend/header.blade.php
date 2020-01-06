@@ -9,13 +9,13 @@
                         @if (Auth::guard('thanhvien')->check())
                             <li class="nav-item"><a class="nav-link" href="edit/{{Auth::guard('thanhvien')->user()->id}}">Xin chào, {{Auth::guard('thanhvien')->user()->hoten}} <span class="fa fa-fw fa-user"></span></a></li>
                             <li class="nav-item"><a class="nav-link" href="logout">Đăng xuất</a></li>
+                            <li class="nav-item">
+                                <a href="cart" class="nav-link dropdown-toggle">Giỏ hàng <i class="fa fa-fw fa-shopping-cart"></i><span>@if(Session::has('cart')){{Session('cart')->totalQty}} @else 0 @endif</span></a>
+                            </li>
                         @else
                             <li class="nav-item"><a class="nav-link" href="login">Đăng nhập</a></li>
                             <li class="nav-item"><a class="nav-link" href="register">Đăng kí</a></li>
                         @endif
-                        <li class="nav-item">
-                            <a href="cart" class="nav-link dropdown-toggle">Giỏ hàng <i class="fa fa-fw fa-shopping-cart"></i><span>@if(Session::has('cart')){{Session('cart')->totalQty}} @else 0 @endif</span></a>
-                        </li>
                     </ul>
                 </div>
             </div>

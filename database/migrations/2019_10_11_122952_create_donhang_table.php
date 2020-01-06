@@ -15,7 +15,7 @@ class CreateDonhangTable extends Migration
     {
         Schema::create('donhang', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_nhanvien')->unsigned();
+            $table->bigInteger('id_user')->unsigned()->nullable();
             $table->bigInteger('id_thanhvien')->unsigned();
             $table->string('hoten');
             $table->string('sdt');

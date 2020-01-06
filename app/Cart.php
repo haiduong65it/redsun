@@ -22,6 +22,7 @@ class Cart
     	if ($this->items){
     		if (array_key_exists($id, $this->items)){
     			$giohang = $this->items[$id];
+                $this->totalPrice -= $this->items[$id]['price']; 
     		}
     	}
     	$giohang['qty'] += $qty;

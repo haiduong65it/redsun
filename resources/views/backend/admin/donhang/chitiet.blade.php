@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title', 'Chi tiết khuyến mãi')
+@section('title', 'Chi tiết đơn hàng')
 
 @section('content')
   
@@ -48,7 +48,7 @@
                 <tbody>
                   <?php $d = 1?>
                   @foreach($ctdonhang as $ct)
-                  <tr class="odd gradeX" align="center">
+                  <tr class="odd gradeX">
                     <td>{{$d++}}</td>
                     <td>{{$ct->id_sanpham}}</td>
                     <td>{{$ct->size}}</td>

@@ -11,9 +11,9 @@
 				<div class="col-first">
 					<h1>Product Details Page</h1>
 					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="{{route('home')}}">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
-						<a href="detail_product.html">product-details</a>
+						Product-details
 					</nav>
 				</div>
 			</div>

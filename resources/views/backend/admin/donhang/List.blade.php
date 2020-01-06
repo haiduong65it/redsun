@@ -38,7 +38,6 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>ID nhân viên</th>
                     <th>Họ tên khách hàng</th>
                     <th>Số điện thoại</th>
                     <th>Địa chỉ</th>
@@ -54,19 +53,18 @@
                 <tbody>
                 @foreach($donhang as $dh)
                   <tr class="odd gradeX">
-                    <td>{{$dh->id}}</td>                    
-                    <td>{{$dh->id_nhanvien}}</td>
+                    <td>{{$dh->id}}</td>            
                     <td>{{$dh->hoten}}</td>
                     <td>{{$dh->sdt}}</td>
                     <td>{{$dh->diachi}}</td>
                     <td>{{$dh->phuongthucthanhtoan}}</td>
                     <td>{{$dh->ngaydat}}</td>
                     <td>{{number_format($dh->tongtien)}} VNĐ</td>
-                    <td>{{$dh->tinhtrangdonhang}}</td>
+                    <td>@if ($dh->trangthaidonhang == 0) Chờ duyệt @elseif ($dh->trangthaidonhang == 1) Đã duyệt @endif</td>
                     <td class="center"><i class="fa fa-eye fa-fw"></i><a href="admin/donhang/chitiet/{{$dh->id}}">Xem chi tiết</a></td>
                     <td class="center"><i class="fa fa-pencil fa-fw"></i><a href="admin/donhang/duyetdon/{{$dh->id}}">Duyệt đơn hàng</a></td>
                     <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/donhang/xoa/{{$dh->id}}">Xóa</a></td>
-            </tr>
+                  </tr>
                 @endforeach
                 </tbody>
               </table>
