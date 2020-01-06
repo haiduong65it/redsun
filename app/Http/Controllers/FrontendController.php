@@ -291,4 +291,7 @@ class FrontendController extends Controller
     public function get_introduce(){
       return view('frontend.introduce');
     }
+    public function  get_guide(){
+      return view('frontend.guide');
+    }
 }

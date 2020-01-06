@@ -201,3 +201,5 @@ Route::get('/introduce','FrontendController@get_introduce');
 
 Route::get('/checkout', 'FrontendController@get_checkout');
 Route::post('/checkout', 'FrontendController@post_checkout');
+
+Route::get('/guide','FrontendController@get_guide');
